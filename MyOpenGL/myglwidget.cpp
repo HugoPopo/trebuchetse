@@ -239,9 +239,8 @@ void MyGLWidget::draw()
 {
     glColor3f(1,1,1);
     //drawCube(204,102,0);
-    drawTarget(10,10);
-    //drawSol();
-    //drawCiel();
+    //drawTarget(10,10);
+    drawBase();
 }
 
 void MyGLWidget::drawCube(int R,int G,int B)
@@ -301,14 +300,21 @@ void MyGLWidget::drawBase()
         //Partie Centrale
 
         glPushMatrix();
-            glTranslatef(0,7.5,0);
-            glScalef (1, 5, 1);
+            glTranslatef(15,7.5,0);
+            glScalef (30, 5, 1);
             drawCube(204,102,0);
         glPopMatrix();
         //Partie Gauche
         glPushMatrix();
-            glTranslatef(15,0,0);
+            glTranslatef(15,15,0);
             glScalef (30, 1, 1);
+            drawCube(204,102,0);
+        glPopMatrix();
+        //Support Triangle droit
+        glPushMatrix();
+            glRotatef(210,0,1,0);
+            glTranslatef(1,0,9);
+            glScalef (15, 1, 1);
             drawCube(204,102,0);
         glPopMatrix();
     glPopMatrix();
