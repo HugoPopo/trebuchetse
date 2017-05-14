@@ -59,7 +59,7 @@ signals:
 private:
     void draw();
     void drawCube(int R, int G,int B);
-    void drawTarget();
+    void drawTarget(double height,double radius);
     void drawBase();
     int angleCatapulte;
     int angleBras;

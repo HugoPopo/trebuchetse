@@ -239,7 +239,7 @@ void MyGLWidget::draw()
 {
     glColor3f(1,1,1);
     //drawCube(204,102,0);
-    drawTarget();
+    drawTarget(10,10);
     //drawSol();
     //drawCiel();
 }
@@ -313,16 +313,15 @@ void MyGLWidget::drawBase()
         glPopMatrix();
     glPopMatrix();
 }
-void MyGLWidget::drawTarget()
+void MyGLWidget::drawTarget(double height,double radius)
 {
-    const double PI = 3.14159;
+        const double PI = 3.14159;
 
 
 
         /* top triangle */
         double i, resolution  = 0.1;
-        double height = 0.3;
-        double radius = 0.5;
+
 
 
         glPushMatrix();
