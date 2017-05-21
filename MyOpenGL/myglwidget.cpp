@@ -8,7 +8,6 @@
 #include <GL/glu.h>
 #include "myglwidget.h"
 
-
 MyGLWidget::MyGLWidget(QWidget *parent)
     : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
 {
@@ -21,8 +20,6 @@ MyGLWidget::MyGLWidget(QWidget *parent)
     yRot = 0;
     zRot = 0;
     zoom = 0.1;
-    angleCatapulte = 0;
-    angleBras = 0;
 }
 
 MyGLWidget::~MyGLWidget()
@@ -108,26 +105,6 @@ void MyGLWidget::setZoom(int scale)
     zoom = float(scale)/1000;
     emit zoomChanged(scale);
     updateGL();
-}
-
-void MyGLWidget::setAngleCatapulte(int angle)
-{
-    angleCatapulte = angle;
-    emit angleCatapulteChanged(angle);
-        updateGL();
-}
-
-void MyGLWidget::setAngleBras(int angle)
-{
-    if (angle > 38){
-        angle = 38;
-    } else if (angle < -135){
-        angle = -135;
-    }
-    angleBras = angle;
-    qDebug()<<angle;
-    emit angleBrasChanged(angle);
-        updateGL();
 }
 
 
@@ -237,88 +214,9 @@ void MyGLWidget::wheelEvent(QWheelEvent *event)
 
 void MyGLWidget::draw()
 {
-    glColor3f(1,1,1);
-    //drawCube(204,102,0);
-    //drawTarget(10,10);
-    drawBase();
+    treb.drawTrebuchet();
 }
 
-void MyGLWidget::drawCube(int R,int G,int B)
-{
-
-    glBegin(GL_QUADS);
-
-        glColor3ub(R, G, B); //face 1
-        glVertex3d(1,1,1);
-        glVertex3d(1,1,-1);
-        glVertex3d(-1,1,-1);
-        glVertex3d(-1,1,1);
-
-        glColor3ub(R, G, B); //face 2
-        glVertex3d(1,-1,1);
-        glVertex3d(1,-1,-1);
-        glVertex3d(1,1,-1);
-        glVertex3d(1,1,1);
-
-        glColor3ub(R, G, B); //face 3
-        glVertex3d(-1,-1,1);
-        glVertex3d(-1,-1,-1);
-        glVertex3d(1,-1,-1);
-        glVertex3d(1,-1,1);
-
-        glColor3ub(R, G, B); //face 4
-        glVertex3d(-1,1,1);
-        glVertex3d(-1,1,-1);
-        glVertex3d(-1,-1,-1);
-        glVertex3d(-1,-1,1);
-
-        glColor3ub(R, G, B); //face 5
-        glVertex3d(1,1,-1);
-        glVertex3d(1,-1,-1);
-        glVertex3d(-1,-1,-1);
-        glVertex3d(-1,1,-1);
-
-        glColor3ub(R, G, B); //face 6
-        glVertex3d(1,-1,1);
-        glVertex3d(1,1,1);
-        glVertex3d(-1,1,1);
-        glVertex3d(-1,-1,1);
-
-        glEnd();
-}
-
-
-void MyGLWidget::drawBase()
-{
-    glPushMatrix();
-        //Partie Droite
-        glPushMatrix();
-            glTranslatef(15,0,0);
-            glScalef (30, 1, 1);
-            drawCube(204,102,0);
-        glPopMatrix();
-        //Partie Centrale
-
-        glPushMatrix();
-            glTranslatef(15,7.5,0);
-            glScalef (30, 5, 1);
-            drawCube(204,102,0);
-        glPopMatrix();
-        //Partie Gauche
-        glPushMatrix();
-            glTranslatef(15,15,0);
-            glScalef (30, 1, 1);
-            drawCube(204,102,0);
-        glPopMatrix();
-        //Support Triangle droit
-        glPushMatrix();
-            glRotatef(210,0,1,0);
-            glTranslatef(1,0,9);
-            glScalef (15, 1, 1);
-            drawCube(204,102,0);
-        glPopMatrix();
-    glPopMatrix();
-}
 void MyGLWidget::drawTarget(double height,double radius)
 {
         const double PI = 3.14159;

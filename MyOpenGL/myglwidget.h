@@ -7,6 +7,7 @@
 #include <QOpenGLTexture>
 #include <GL/glu.h>
 #include "myglwidget.h"
+#include "trebuchet.h"
 
 class MyGLWidget : public QGLWidget
 {
@@ -29,6 +30,8 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void keyPressEvent(QKeyEvent *);
     void wheelEvent(QWheelEvent *event);
+
+    void drawTarget(double height,double radius);
 
 public slots:
     // slots for xyz-rotation slider
@@ -53,19 +56,15 @@ signals:
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
     void zoomChanged(int scale);
-    void angleCatapulteChanged(int angle);
-    void angleBrasChanged(int angle);
+
 
 private:
     void draw();
-    void drawCube(int R, int G,int B);
-    void drawTarget(double height,double radius);
-    void drawBase();
-    int angleCatapulte;
-    int angleBras;
+    trebuchet treb;
     int xRot;
     int yRot;
     int zRot;
+
 
     float xTra;
     float yTra;
