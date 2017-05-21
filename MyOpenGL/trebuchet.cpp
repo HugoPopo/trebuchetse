@@ -5,6 +5,7 @@
 #include <QGLWidget>
 #include <QOpenGLTexture>
 #include <GL/glu.h>
+#include"soil.h"
 
 //Methode de la classe trebuchet :
 //Permettant de dessiner et de gérer le déplacement du trébuchet
@@ -128,7 +129,7 @@ drawContrepoid();
 void trebuchet::drawContrepoid()
 {
 
-        glPushMatrix();
+    glPushMatrix();
             glTranslatef(-15,7.5,-12);
             glScalef (5,5,4);
             drawCube(204,102,0);

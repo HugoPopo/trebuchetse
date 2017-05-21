@@ -8,6 +8,7 @@
 #include <GL/glu.h>
 #include "myglwidget.h"
 #include "trebuchet.h"
+#include "target.h"
 
 class MyGLWidget : public QGLWidget
 {
@@ -31,7 +32,6 @@ protected:
     void keyPressEvent(QKeyEvent *);
     void wheelEvent(QWheelEvent *event);
 
-    void drawTarget(double height,double radius);
 
 public slots:
     // slots for xyz-rotation slider
@@ -61,6 +61,7 @@ signals:
 private:
     void draw();
     trebuchet treb;
+    target targ;
     int xRot;
     int yRot;
     int zRot;

@@ -15,13 +15,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         window.cpp \
     myglwidget.cpp \
-    trebuchet.cpp
+    trebuchet.cpp \
+    target.cpp
 
 HEADERS  += window.h \
     myglwidget.h \
-    trebuchet.h
+    trebuchet.h \
+    target.h
 
 FORMS    += window.ui
 
 
 LIBS += -lOpengl32 -lglu32
+
+
