@@ -9,10 +9,11 @@
 
 Line::Line()
 {
-
+textline=QImage("Image/bois.jpg");
 }
 
 void Line::drawLine(){
+
     glBegin(GL_LINE_STRIP);
 
       glVertex2f(-4.00, 0.00);

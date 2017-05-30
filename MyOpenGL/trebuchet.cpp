@@ -14,6 +14,7 @@ Trebuchet::Trebuchet()
 
     angleCatapulte = 0;
     angleBras = 0;
+    textbois=QImage(":/texture/Image/bois.jpg");
 }
 
 
@@ -22,12 +23,15 @@ Trebuchet::Trebuchet()
 //Ok
 void Trebuchet::poutreSol()
 {
-
+        QOpenGLTexture* text1 = new QOpenGLTexture(textbois);
+        text1->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+        text1->setMagnificationFilter(QOpenGLTexture::Linear);
+        text1->bind();
         //Partie Droite
         glPushMatrix();
             glTranslatef(0, 0, 0.125);
             glScalef (3,0.125, 0.125);
-            drawCube(204,102,0);
+            drawCubeTexture();
         glPopMatrix();
 }
 
@@ -40,13 +44,17 @@ void Trebuchet::poutreOblique()
 translate 0 0 .75
 rotate 45 0 1 0
 scale 2 .125 .125*/
+    QOpenGLTexture* text1 = new QOpenGLTexture(textbois);
+    text1->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+    text1->setMagnificationFilter(QOpenGLTexture::Linear);
+    text1->bind();
 
     glPushMatrix();
             glTranslatef(0,0,1.5);
             glRotatef(45,0,1,0);
             glScalef (2,0.125,0.125);
-            drawCube(204,102,0);
-       glPopMatrix();
+            drawCubeTexture();
+     glPopMatrix();
 }
 
 //Ok

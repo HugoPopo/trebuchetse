@@ -19,7 +19,7 @@ MyGLWidget::MyGLWidget(QWidget *parent)
     xRot = 0;
     yRot = 0;
     zRot = 0;
-    zoom = 0.1;
+    zoom = 0.5;
 }
 
 MyGLWidget::~MyGLWidget()

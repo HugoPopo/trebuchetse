@@ -38,4 +38,7 @@ FORMS    += window.ui
 
 LIBS += -lOpengl32 -lglu32
 
+RESOURCES += \
+    ressource.qrc
+
 
