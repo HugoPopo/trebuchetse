@@ -10,7 +10,6 @@ public:
     void drawCube(int R,int G,int B);
 private:
     int xTarget =10;
-
     int yTarget =10;
 };
 

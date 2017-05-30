@@ -111,9 +111,6 @@ void MyGLWidget::setZoom(int scale)
 void MyGLWidget::initializeGL()
 {
     qglClearColor(Qt::black);
-
-
-
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);
@@ -127,9 +124,6 @@ void MyGLWidget::initializeGL()
     //glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
     //glLightfv(GL_LIGHT1, GL_POSITION, light2Position);
     //glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, light2Direction);
-
-
-    //Chargement des textures:
 
 }
 
@@ -214,7 +208,8 @@ void MyGLWidget::wheelEvent(QWheelEvent *event)
 
 void MyGLWidget::draw()
 {
-    //treb.drawTrebuchet();
-    targ.drawTarget();
+    treb.drawTrebuchet();
+    treb.drawBoulet();
+    terr.drawTerrain();
 }
 

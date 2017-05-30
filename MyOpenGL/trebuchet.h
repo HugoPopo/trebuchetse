@@ -7,6 +7,7 @@ class trebuchet: public cube
 public:
     trebuchet();
     void drawTrebuchet();
+    void drawBoulet();
 
 private:
     void drawBase();

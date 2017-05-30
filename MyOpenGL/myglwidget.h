@@ -56,6 +56,8 @@ signals:
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
     void zoomChanged(int scale);
+    void angleCatapulteChanged(int angle);
+    void angleBrasChanged(int angle);
 
 
 private:
@@ -68,6 +70,18 @@ private:
     int xRot;
     int yRot;
     int zRot;
+    //Données nécessaire pour le jeu
+
+    void calcTraf();    //Fonction qui va nous permettre de calculer la trajectoire de la balle
+    void genTarget(); //Génération d'une cible en fonction de la difficulté
+    int level; //Niveau de difficulté (3 niveaux de difficulté, facile, moyen difficile)
+    bool visibleImpact;
+    float calcScore; //Fonction qui va nous permettre de calculer le score, calcule de la distance entre l'impact et la cible
+    float impX; //Coordonnées de l'impact
+    float impY;
+    float angleCorde;
+    int angleBras;  // Angle du bras de la catapulte
+    int puissance;  //Puissance de jeter de la balle
 
 
     float xTra;
