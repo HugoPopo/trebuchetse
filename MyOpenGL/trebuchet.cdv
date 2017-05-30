@@ -1,0 +1,119 @@
+begin header 
+axis custom x 0 10 10 y 0 10 10 z 0 10 10
+end header
+
+begin displaylist
+
+newlist poutre_sol
+pushmatrix
+color .34 .16 0
+translate 0 0 .125
+scale 3 .125 .125
+volume box
+popmatrix
+endlist
+
+newlist poutre_oblique
+pushmatrix
+color .34 .16 0
+translate 0 0 .75
+rotate 45 0 1 0
+scale 2 .125 .125
+volume box 
+popmatrix
+endlist
+
+newlist fulcrum
+pushmatrix
+color .45 .4 .45
+rotate 90 1 0 0
+scale .15 .15 .5
+volume cylinder 20 true true
+popmatrix
+endlist
+
+newlist payload
+pushmatrix
+color 0 0 0
+translate 0 0 -.75
+scale .05 .05 1.75
+volume cylinder 8 true true
+popmatrix
+endlist
+
+begin script
+# placement poutre au sol
+pushmatrix
+translate 1.25 0 0
+calllist poutre_sol
+translate 0 .5 0
+calllist poutre_sol
+rotate 90 0 0 1
+scale .75 1 1
+translate 1.5 0 0
+calllist poutre_sol
+translate -3.75 0 0
+calllist poutre_sol
+popmatrix
+
+#placement poutre_oblique
+pushmatrix
+translate 2 0 0
+calllist poutre_oblique
+translate 0 .5 0
+calllist poutre_oblique
+rotate 90 0 0 1
+translate .75 .75 0
+calllist poutre_oblique
+rotate 90 0 0 1
+translate .75 .75 0
+calllist poutre_oblique
+translate 0 .5 0
+calllist poutre_oblique
+rotate 90 0 0 1
+translate .75 .75 0
+calllist poutre_oblique
+popmatrix
+
+#placement fulcrum
+pushmatrix
+translate 1.25 .25 1.5
+calllist fulcrum
+calllist payload
+rotate -67 0 1 0
+	pushmatrix
+	translate 1 0 0
+		pushmatrix
+		scale 1.5 1 1
+		calllist poutre_sol
+		popmatrix
+		
+		pushmatrix
+		translate 2 0 0
+			pushmatrix
+			
+			#translate
+				pushmatrix
+				scale 1 .26 1
+				translate 0 0 0
+				calllist fulcrum
+				popmatrix
+				
+				pushmatrix
+				rotate -15 0 1 0
+				#scale 1 .6 1.5
+				calllist payload
+				translate -.1 0 -2.5
+				popmatrix
+				scale .3 .3 .3
+				#volume sphere 2
+			popmatrix
+			
+		
+		popmatrix
+	popmatrix
+popmatrix
+
+
+
+end script
