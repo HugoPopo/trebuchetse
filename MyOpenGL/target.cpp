@@ -13,13 +13,13 @@
 #define PI 3.1415927
 
 
-target::target()
+Target::Target()
 {
 
 }
 
 
-void target::drawTarget()
+void Target::drawTarget()
 {
     GLUquadric* disk = gluNewQuadric();
     glPushMatrix();

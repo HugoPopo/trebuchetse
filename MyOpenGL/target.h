@@ -2,10 +2,10 @@
 #define TARGET_H
 
 
-class target
+class Target
 {
 public:
-    target();
+    Target();
     void drawTarget();
     void drawCube(int R,int G,int B);
 private:

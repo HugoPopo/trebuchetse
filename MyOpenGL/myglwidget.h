@@ -64,7 +64,7 @@ private:
     void draw();
     //Objet à dessiner
     Trebuchet treb;
-    target targ;
+    Target targ;
     Terrain terr;
     //
     int xRot;
