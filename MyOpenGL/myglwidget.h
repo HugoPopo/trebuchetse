@@ -9,6 +9,7 @@
 #include "myglwidget.h"
 #include "trebuchet.h"
 #include "target.h"
+#include "terrain.h"
 
 class MyGLWidget : public QGLWidget
 {
@@ -51,7 +52,6 @@ signals:
     void xTranslationChanged(float dist);
     void yTranslationChanged(float dist);
     void zTranslationChanged(float dist);
-
     void xRotationChanged(int angle);
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
@@ -60,8 +60,11 @@ signals:
 
 private:
     void draw();
+    //Objet à dessiner
     trebuchet treb;
     target targ;
+    terrain terr;
+    //
     int xRot;
     int yRot;
     int zRot;

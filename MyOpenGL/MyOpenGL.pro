@@ -16,12 +16,16 @@ SOURCES += main.cpp\
         window.cpp \
     myglwidget.cpp \
     trebuchet.cpp \
-    target.cpp
+    target.cpp \
+    terrain.cpp \
+    cube.cpp
 
 HEADERS  += window.h \
     myglwidget.h \
     trebuchet.h \
-    target.h
+    target.h \
+    terrain.h \
+    cube.h
 
 FORMS    += window.ui
 

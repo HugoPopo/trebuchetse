@@ -1,17 +1,14 @@
 #ifndef TREBUCHET_H
 #define TREBUCHET_H
+#include "cube.h"
 
-
-class trebuchet
+class trebuchet: public cube
 {
 public:
     trebuchet();
     void drawTrebuchet();
 
 private:
-
-    void drawCube(int R, int G,int B);
-
     void drawBase();
     void drawPied();
     void drawContrepoid();
