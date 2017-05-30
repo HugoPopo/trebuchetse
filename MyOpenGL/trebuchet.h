@@ -2,10 +2,10 @@
 #define TREBUCHET_H
 #include "cube.h"
 
-class trebuchet: public cube
+class Trebuchet: public cube
 {
 public:
-    trebuchet();
+    Trebuchet();
     void drawTrebuchet();
     void drawBoulet();
 

@@ -63,7 +63,7 @@ signals:
 private:
     void draw();
     //Objet à dessiner
-    trebuchet treb;
+    Trebuchet treb;
     target targ;
     terrain terr;
     //
