@@ -2,10 +2,10 @@
 #define CUBE_H
 
 
-class cube
+class Cube
 {
 public:
-    cube();
+    Cube();
     void drawCube(int R, int G,int B);
 
 };

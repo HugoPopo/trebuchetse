@@ -2,7 +2,8 @@
 #define TREBUCHET_H
 #include "cube.h"
 #include "bras.h"
-class Trebuchet: public cube
+
+class Trebuchet: public Cube
 {
 public:
     Trebuchet();
@@ -13,7 +14,6 @@ private:
     Bras bras;
     void poutreOblique();
     void fulcrum();
-    void payload();
     void poutreSol();
     int angleCatapulte;
     int angleBras;

@@ -2,10 +2,10 @@
 #define TERRAIN_H
 #include "cube.h"
 
-class terrain: public cube
+class Terrain: public Cube
 {
 public:
-    terrain();
+    Terrain();
 
     void drawTerrain();
 };

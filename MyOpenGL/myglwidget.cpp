@@ -208,8 +208,8 @@ void MyGLWidget::wheelEvent(QWheelEvent *event)
 
 void MyGLWidget::draw()
 {
+
     treb.drawTrebuchet();
-    treb.drawBoulet();
-    terr.drawTerrain();
+    //terr.drawTerrain();
 }
 

@@ -6,13 +6,13 @@
 #include <QOpenGLTexture>
 #include <GL/glu.h>
 #include "cube.h"
-terrain::terrain()
+Terrain::Terrain()
 {
 
 }
 
 //Fonction permettant de dessiner le terrain
-void terrain::drawTerrain()
+void Terrain::drawTerrain()
 {
     glPushMatrix();
 

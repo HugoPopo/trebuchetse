@@ -5,15 +5,15 @@
 #include <QGLWidget>
 #include <QOpenGLTexture>
 #include <GL/glu.h>
-#include "myglwidget.h"
 
-cube::cube()
+
+Cube::Cube()
 {
     void drawCube(int R, int G,int B);
 
 }
 
-void cube::drawCube(int R,int G,int B)
+void Cube::drawCube(int R,int G,int B)
 {
 
     glBegin(GL_QUADS);

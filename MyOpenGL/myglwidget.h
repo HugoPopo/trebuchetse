@@ -65,7 +65,7 @@ private:
     //Objet à dessiner
     Trebuchet treb;
     target targ;
-    terrain terr;
+    Terrain terr;
     //
     int xRot;
     int yRot;
