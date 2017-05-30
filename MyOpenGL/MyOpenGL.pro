@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     terrain.cpp \
     cube.cpp \
     boulet.cpp \
-    bras.cpp
+    bras.cpp \
+    line.cpp
 
 HEADERS  += window.h \
     myglwidget.h \
@@ -29,7 +30,8 @@ HEADERS  += window.h \
     terrain.h \
     cube.h \
     boulet.h \
-    bras.h
+    bras.h \
+    line.h
 
 FORMS    += window.ui
 

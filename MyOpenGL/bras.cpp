@@ -32,8 +32,9 @@ void Bras::drawBras(){
                 poutre();
             glPopMatrix();//PP
             glPushMatrix();//P
-                glTranslatef(2,0,0);
-
+                glTranslatef(8,0,0);
+                //Line
+                fil.drawLine();
             glPopMatrix();//PP
         glPopMatrix();//PP
     glPopMatrix();//PP
