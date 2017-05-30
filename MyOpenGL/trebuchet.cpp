@@ -6,10 +6,10 @@
 #include <QOpenGLTexture>
 #include <GL/glu.h>
 
-//Methode de la classe trebuchet :
+//Methode de la classe Trebuchet :
 //Permettant de dessiner et de gérer le déplacement du trébuchet
 
-trebuchet::trebuchet()
+Trebuchet::Trebuchet()
 {
 
     angleCatapulte = 0;
@@ -20,7 +20,7 @@ trebuchet::trebuchet()
 
 
 //Ok
-void trebuchet::drawBase()
+void Trebuchet::drawBase()
 {
     glPushMatrix();
         //Partie Droite
@@ -71,7 +71,7 @@ void trebuchet::drawBase()
 }
 
 
-void trebuchet::drawTrebuchet()
+void Trebuchet::drawTrebuchet()
 {
 drawBase();//Ok
 drawBras();//Ok
@@ -79,7 +79,7 @@ drawContrepoid();
 }
 
 
-void trebuchet::drawContrepoid()
+void Trebuchet::drawContrepoid()
 {
 
     glPushMatrix();
@@ -90,7 +90,7 @@ void trebuchet::drawContrepoid()
 }
 
 //Ok
-void trebuchet::drawBras()
+void Trebuchet::drawBras()
 {
     //Bras + Liant Triangle
     glPushMatrix();
@@ -109,7 +109,7 @@ void trebuchet::drawBras()
 
 
 //TODO gerer le mouvement de la balle
-void trebuchet::drawBoulet()
+void Trebuchet::drawBoulet()
 {
     GLUquadric* sphere = gluNewQuadric();
     glColor3f(178,178,178);
