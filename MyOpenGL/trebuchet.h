@@ -1,19 +1,20 @@
 #ifndef TREBUCHET_H
 #define TREBUCHET_H
 #include "cube.h"
-
+#include "bras.h"
 class Trebuchet: public cube
 {
 public:
     Trebuchet();
     void drawTrebuchet();
-    void drawBoulet();
+
 
 private:
-    void drawBase();
-    void drawPied();
-    void drawContrepoid();
-    void drawBras();
+    Bras bras;
+    void poutreOblique();
+    void fulcrum();
+    void payload();
+    void poutreSol();
     int angleCatapulte;
     int angleBras;
 };

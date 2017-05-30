@@ -18,14 +18,18 @@ SOURCES += main.cpp\
     trebuchet.cpp \
     target.cpp \
     terrain.cpp \
-    cube.cpp
+    cube.cpp \
+    boulet.cpp \
+    bras.cpp
 
 HEADERS  += window.h \
     myglwidget.h \
     trebuchet.h \
     target.h \
     terrain.h \
-    cube.h
+    cube.h \
+    boulet.h \
+    bras.h
 
 FORMS    += window.ui
 
