@@ -8,17 +8,21 @@
 #include "cube.h"
 Terrain::Terrain()
 {
-
+    textherbe=QImage(":/texture/Image/herbe.jpg");
 }
 
 //Fonction permettant de dessiner le terrain
 void Terrain::drawTerrain()
 {
+    QOpenGLTexture* text1 = new QOpenGLTexture(textherbe);
+    text1->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+    text1->setMagnificationFilter(QOpenGLTexture::Linear);
+    text1->bind();
     glPushMatrix();
 
-      glTranslatef(0,0,10);
+      glTranslatef(0,0,-10);
       glScalef(100,100,10);
-      drawCube(40.8, 89.25, 0.0);
+      drawCubeTexture();
 
     glPopMatrix();
 
