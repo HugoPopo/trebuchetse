@@ -8,6 +8,7 @@
 #include "cube.h"
 Terrain::Terrain()
 {
+    textherbe=QImage(":/texture/Image/herbes.jpg");
 }
 
 //Fonction permettant de dessiner le terrain
