@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/texture">
         <file>Image/bois.jpg</file>
-		<file>Image/herbe.jpg</file>
     </qresource>
 </RCC>

@@ -19,7 +19,7 @@ MyGLWidget::MyGLWidget(QWidget *parent)
     xRot = 0;
     yRot = 0;
     zRot = 0;
-    zoom = 0.1;
+    zoom = 0.5;
 }
 
 MyGLWidget::~MyGLWidget()
@@ -112,7 +112,7 @@ void MyGLWidget::initializeGL()
 {
     qglClearColor(Qt::black);
     glEnable(GL_DEPTH_TEST);
-    glDisable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);
     glEnable(GL_TEXTURE_2D);
     //glEnable(GL_LIGHTING);
@@ -208,12 +208,8 @@ void MyGLWidget::wheelEvent(QWheelEvent *event)
 
 void MyGLWidget::draw()
 {
-    glColor3f(1,1,1);
-    glPushMatrix();
-        glScalef(2,2,2);
-        treb.drawTrebuchet();
-    glPopMatrix();
 
-    terr.drawTerrain();
+    treb.drawTrebuchet();
+    //terr.drawTerrain();
 }
 
