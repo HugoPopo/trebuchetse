@@ -11,6 +11,8 @@ public:
     void drawTerrain();
 
     QImage textherbe;
+
+    QImage texttse;
 };
 
 #endif // TERRAIN_H
