@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     cube.cpp \
     boulet.cpp \
     bras.cpp \
-    line.cpp
+    line.cpp \
+    logo.cpp
 
 HEADERS  += window.h \
     myglwidget.h \
@@ -31,7 +32,8 @@ HEADERS  += window.h \
     cube.h \
     boulet.h \
     bras.h \
-    line.h
+    line.h \
+    logo.h
 
 FORMS    += window.ui
 

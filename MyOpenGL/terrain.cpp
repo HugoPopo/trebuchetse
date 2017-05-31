@@ -9,7 +9,6 @@
 Terrain::Terrain()
 {
     textherbe=QImage(":/texture/Image/herbes.jpg");
-    texttse=QImage(":/texture/Image/logo.png");
 }
 
 //Fonction permettant de dessiner le terrain
@@ -26,17 +25,7 @@ void Terrain::drawTerrain()
       drawCubeTexture();
 
     glPopMatrix();
-    QOpenGLTexture* text2 = new QOpenGLTexture(texttse);
-    text2->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
-    text2->setMagnificationFilter(QOpenGLTexture::Linear);
-    text2->bind();
-    glPushMatrix();
-
-      glTranslatef(20,20,0.5);
-      glScalef(2,2,0.1);
-      drawCubeTexture();
-
-    glPopMatrix();
+    logtse.drawLogo(20,20,0.5);
 
 
 }
