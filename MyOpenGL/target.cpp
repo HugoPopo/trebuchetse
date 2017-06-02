@@ -15,16 +15,20 @@
 
 Target::Target()
 {
-
+    texttarget=QImage(":/texture/Image/cible.jpg");
 }
 
 
 void Target::drawTarget()
 {
-
+    QOpenGLTexture* text1 = new QOpenGLTexture(texttarget);
+    text1->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+    text1->setMagnificationFilter(QOpenGLTexture::Linear);
+    text1->bind();
     GLUquadric* disk = gluNewQuadric();
+    gluQuadricTexture(disk,GL_TRUE);
     glPushMatrix();
-        glColor3f(1, 0.4, 0.4);
+        glColor3f(1, 1, 1);
         glTranslatef(xTarget, yTarget, 0.1);
         glScalef(50,50,1);
         gluDisk(disk, 0,1, 32,1);

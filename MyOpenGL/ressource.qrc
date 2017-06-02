@@ -3,5 +3,6 @@
         <file>Image/bois.jpg</file>
         <file>Image/herbes.jpg</file>
         <file>Image/logo.png</file>
+        <file>Image/cible.jpg</file>
     </qresource>
 </RCC>

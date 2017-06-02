@@ -1,6 +1,7 @@
 #ifndef TARGET_H
 #define TARGET_H
-
+#include <QGLWidget>
+#include <QOpenGLTexture>
 
 class Target
 {
@@ -14,6 +15,7 @@ public:
 private:
     int xTarget =0;
     int yTarget =0;
+    QImage texttarget;
 };
 
 
