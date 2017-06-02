@@ -210,13 +210,17 @@ void MyGLWidget::draw()
 {
     glColor3f(1,1,1);
     glPushMatrix();
-        glTranslatef(-700,0,1);
-        glScalef(2,2,2);
+        glTranslatef(-330,0,1);
+        glScalef(4,4,4);
+        glRotatef(180,0,0,1);
         treb.drawTrebuchet();
     glPopMatrix();
     glColor3f(1,1,1);
     glPushMatrix();
         terr.drawTerrain();
+    glPopMatrix();
+    glPushMatrix();
+        targ.drawTarget();
     glPopMatrix();
 }
 

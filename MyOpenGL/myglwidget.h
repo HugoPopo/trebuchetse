@@ -44,8 +44,6 @@ public slots:
     void setYRotation(int angle);
     void setZRotation(int angle);
     void setZoom(int scale);
-    void setAngleCatapulte(int angle);
-    void setAngleBras(int angle);
 
 signals:
     // signaling rotation from mouse movement
@@ -56,8 +54,6 @@ signals:
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
     void zoomChanged(int scale);
-    void angleCatapulteChanged(int angle);
-    void angleBrasChanged(int angle);
 
 
 private:

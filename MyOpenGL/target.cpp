@@ -21,6 +21,7 @@ Target::Target()
 
 void Target::drawTarget()
 {
+
     GLUquadric* disk = gluNewQuadric();
     glPushMatrix();
         glColor3f(1, 0.4, 0.4);
@@ -32,3 +33,28 @@ void Target::drawTarget()
 }
 
 
+void Target::lvlTarget(int level){
+    srand (time(NULL));
+
+    switch (level){
+    case 1:
+        xTarget = ((rand()%200) - 250);
+        break;
+    case 2:
+        xTarget = ((rand()%200) - 50);
+        break;
+    case 3:
+        xTarget = ((rand()%200) + 150);
+        break;
+    }
+    yTarget = (rand() % 350)-175;
+
+}
+
+void Target::setyTarget(int y){
+    yTarget = y;
+}
+
+void Target::setxTarget(int x){
+    xTarget = x;
+}
