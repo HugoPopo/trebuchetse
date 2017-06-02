@@ -21,11 +21,11 @@ void Terrain::drawTerrain()
     glPushMatrix();
 
       glTranslatef(0,0,-10);
-      glScalef(100,100,10);
+      glScalef(350,175,10);
       drawCubeTexture();
 
     glPopMatrix();
     logtse.drawLogo(20,20,0.5);
-
+    fil.drawFilet();
 
 }

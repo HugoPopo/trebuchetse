@@ -4,6 +4,7 @@
 #include <QOpenGLTexture>
 #include <QtOpenGL>
 #include "logo.h"
+#include "filet.h"
 
 class Terrain: public Cube
 {
@@ -14,6 +15,7 @@ public:
 private:
     QImage textherbe;
     Logo logtse;
+    Filet fil;
 };
 
 #endif // TERRAIN_H
