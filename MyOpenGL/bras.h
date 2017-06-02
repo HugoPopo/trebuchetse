@@ -10,9 +10,11 @@ public:
     Bras();
     void poutre();
     void drawBras();
+    void setInclinaison(float inc);
 private:
-    float inclinaison=0;
+    float inclinaison=10;
     Line fil;
+    QImage textbois;
 };
 
 #endif // BRAS_H

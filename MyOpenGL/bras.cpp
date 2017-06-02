@@ -8,17 +8,22 @@
 
 Bras::Bras()
 {
+  textbois=QImage(":/texture/Image/bois.jpg");
 
 }
 void Bras::poutre()
 {
+    QOpenGLTexture* text1 = new QOpenGLTexture(textbois);
+    text1->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+    text1->setMagnificationFilter(QOpenGLTexture::Linear);
+    text1->bind();
 
-        //Partie Droite
-        glPushMatrix();
-            glTranslatef(0, 0, 0.125);
-            glScalef (3,0.125, 0.125);
-            drawCube(204,102,0);
-        glPopMatrix();
+    glColor3f(1,1,1);
+    glPushMatrix();
+        glTranslatef(0, 0, 0.125);
+        glScalef (3,0.125, 0.125);
+        drawCubeTexture();
+    glPopMatrix();
 }
 void Bras::drawBras(){
 
@@ -39,4 +44,7 @@ void Bras::drawBras(){
         glPopMatrix();//PP
     glPopMatrix();//PP
 
+}
+void Bras::setInclinaison(float inc){
+    inclinaison=inc;
 }
