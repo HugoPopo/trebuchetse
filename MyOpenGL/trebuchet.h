@@ -20,6 +20,7 @@ private:
     void poutreOblique();
     void fulcrum();
     void poutreSol();
+
     int angleCatapulte;
     int angleBras;
     QImage textbois;

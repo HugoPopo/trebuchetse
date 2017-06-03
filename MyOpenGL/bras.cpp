@@ -11,6 +11,19 @@ Bras::Bras()
   textbois=QImage(":/texture/Image/bois.jpg");
 
 }
+void Bras::drawContrepoid()
+{
+    QOpenGLTexture* text1 = new QOpenGLTexture(textbois);
+    text1->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+    text1->setMagnificationFilter(QOpenGLTexture::Linear);
+    text1->bind();
+    glColor3f(0.43, 0.35, 0.24);
+        glPushMatrix();
+            glTranslatef(0,0,-1);
+            glScalef (0.5, 0.5, 0.5);
+            drawCubeTexture();
+       glPopMatrix();
+}
 void Bras::poutre()
 {
     QOpenGLTexture* text1 = new QOpenGLTexture(textbois);
@@ -36,6 +49,11 @@ void Bras::drawBras(){
                 glScalef(1.5,1,1);
                 poutre();
             glPopMatrix();//PP
+            glPushMatrix();
+                        glTranslatef(-6,0,0);
+                        glRotatef(inclinaison,0,-1,0);
+                        drawContrepoid();
+                    glPopMatrix();
             glPushMatrix();//P
                 glTranslatef(8,0,0);
                 //Line

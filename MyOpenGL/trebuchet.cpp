@@ -19,7 +19,6 @@ Trebuchet::Trebuchet()
 
 
 
-
 //Ok
 void Trebuchet::poutreSol()
 {
@@ -31,7 +30,7 @@ void Trebuchet::poutreSol()
         glPushMatrix();
             glTranslatef(0, 0, 0.125);
             glScalef (3,0.125, 0.125);
-            drawCubeTexture();
+            ;
         glPopMatrix();
 }
 

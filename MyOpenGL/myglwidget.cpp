@@ -19,7 +19,7 @@ MyGLWidget::MyGLWidget(QWidget *parent)
     xRot = 0;
     yRot = 0;
     zRot = 0;
-    zoom = 0.01;
+    zoom = 0.05;
 }
 
 MyGLWidget::~MyGLWidget()
@@ -193,6 +193,8 @@ void MyGLWidget::keyPressEvent(QKeyEvent *event)
         setYTranslation(0.3);
     }else if(event->key() == Qt::Key_E){
         setYTranslation(-0.3);
+    }else if(event->key() == Qt::Key_O){
+        //
     }
 }
 
@@ -222,5 +224,6 @@ void MyGLWidget::draw()
     glPushMatrix();
         targ.drawTarget();
     glPopMatrix();
+
 }
 
