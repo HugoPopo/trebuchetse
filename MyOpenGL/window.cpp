@@ -1,6 +1,7 @@
 // window.cpp
 
 #include <QtWidgets>
+#include <QTime>
 #include "window.h"
 #include "ui_window.h"
 
@@ -28,4 +29,11 @@ void Window::keyPressEvent(QKeyEvent *e)
         close();
     else
         QWidget::keyPressEvent(e);
+}
+
+void Window::updateTime()
+{
+    QTime time = QTime::currentTime();
+    QString text = time.toString("hh:mm:ss");
+    ui->chrono_label->setText(text);
 }

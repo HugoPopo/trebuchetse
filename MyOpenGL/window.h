@@ -23,6 +23,10 @@ protected:
 
 private:
     Ui::Window *ui;
+    QTimer *timer;
+
+private slots:
+    void updateTime();
 };
 
 #endif // WINDOW_H
