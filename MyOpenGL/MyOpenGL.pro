@@ -39,9 +39,17 @@ HEADERS  += window.h \
 
 FORMS    += window.ui
 
+INCLUDEPATH +=$$(OPENCV_DIR)\..\..\include
+
 
 LIBS += -lOpengl32 -lglu32
 
+LIBS += -L$$(OPENCV_DIR)\lib \
+    -lopencv_core2413 \
+    -lopencv_highgui2413 \
+    -lopencv_imgproc2413 \
+    -lopencv_features2d2413 \
+    -lopencv_calib3d2413
 RESOURCES += \
     ressource.qrc
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>706</width>
-    <height>415</height>
+    <width>712</width>
+    <height>425</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -102,6 +102,22 @@
            <height>200</height>
           </size>
          </property>
+         <widget class="QLabel" name="camFrame">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>141</width>
+            <height>121</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Image</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </widget>
        </item>
        <item>
@@ -155,6 +171,13 @@
       </layout>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>Commencer le tracking de la main</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
