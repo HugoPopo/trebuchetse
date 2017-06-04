@@ -20,7 +20,10 @@ SOURCES += main.cpp\
     terrain.cpp \
     cube.cpp \
     boulet.cpp \
-    bras.cpp
+    bras.cpp \
+    line.cpp \
+    logo.cpp \
+    filet.cpp
 
 HEADERS  += window.h \
     myglwidget.h \
@@ -29,11 +32,25 @@ HEADERS  += window.h \
     terrain.h \
     cube.h \
     boulet.h \
-    bras.h
+    bras.h \
+    line.h \
+    logo.h \
+    filet.h
 
 FORMS    += window.ui
 
+INCLUDEPATH +=$$(OPENCV_DIR)\..\..\include
+
 
 LIBS += -lOpengl32 -lglu32
+
+LIBS += -L$$(OPENCV_DIR)\lib \
+    -lopencv_core2413 \
+    -lopencv_highgui2413 \
+    -lopencv_imgproc2413 \
+    -lopencv_features2d2413 \
+    -lopencv_calib3d2413
+RESOURCES += \
+    ressource.qrc
 
 

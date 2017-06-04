@@ -44,9 +44,8 @@ public slots:
     void setYRotation(int angle);
     void setZRotation(int angle);
     void setZoom(int scale);
-    void setAngleCatapulte(int angle);
+    //Gestion Angle Bras
     void setAngleBras(int angle);
-
 signals:
     // signaling rotation from mouse movement
     void xTranslationChanged(float dist);
@@ -56,15 +55,14 @@ signals:
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
     void zoomChanged(int scale);
-    void angleCatapulteChanged(int angle);
+    //Gestion Angle Bras
     void angleBrasChanged(int angle);
-
 
 private:
     void draw();
     //Objet à dessiner
     Trebuchet treb;
-    target targ;
+    Target targ;
     Terrain terr;
     //
     int xRot;

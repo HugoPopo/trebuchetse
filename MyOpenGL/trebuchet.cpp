@@ -5,7 +5,7 @@
 #include <QGLWidget>
 #include <QOpenGLTexture>
 #include <GL/glu.h>
-
+#include <QDebug>
 //Methode de la classe Trebuchet :
 //Permettant de dessiner et de gérer le déplacement du trébuchet
 
@@ -14,20 +14,23 @@ Trebuchet::Trebuchet()
 
     angleCatapulte = 0;
     angleBras = 0;
+    textbois=QImage(":/texture/Image/bois.jpg");
 }
-
 
 
 
 //Ok
 void Trebuchet::poutreSol()
 {
-
+        QOpenGLTexture* text1 = new QOpenGLTexture(textbois);
+        text1->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+        text1->setMagnificationFilter(QOpenGLTexture::Linear);
+        text1->bind();
         //Partie Droite
         glPushMatrix();
             glTranslatef(0, 0, 0.125);
             glScalef (3,0.125, 0.125);
-            drawCube(204,102,0);
+            ;
         glPopMatrix();
 }
 
@@ -40,13 +43,17 @@ void Trebuchet::poutreOblique()
 translate 0 0 .75
 rotate 45 0 1 0
 scale 2 .125 .125*/
+    QOpenGLTexture* text1 = new QOpenGLTexture(textbois);
+    text1->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+    text1->setMagnificationFilter(QOpenGLTexture::Linear);
+    text1->bind();
 
     glPushMatrix();
             glTranslatef(0,0,1.5);
             glRotatef(45,0,1,0);
             glScalef (2,0.125,0.125);
-            drawCube(204,102,0);
-       glPopMatrix();
+            drawCubeTexture();
+     glPopMatrix();
 }
 
 //Ok
@@ -68,7 +75,7 @@ scale .15 .15 .5
 
 
 
-void Trebuchet::drawTrebuchet()
+void Trebuchet::drawTrebuchet(int angle)
 {
 //Poutre Sol
 glPushMatrix();
@@ -119,6 +126,7 @@ glPushMatrix();
     glTranslatef(1.25,0.25,2.75);
     fulcrum();
 glPopMatrix();
+bras.setInclinaison(angle);
 
 bras.drawBras();
 

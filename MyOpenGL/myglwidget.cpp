@@ -19,7 +19,9 @@ MyGLWidget::MyGLWidget(QWidget *parent)
     xRot = 0;
     yRot = 0;
     zRot = 0;
-    zoom = 0.01;
+    zoom = 0.05;
+    //Init
+    setAngleBras(45);
 }
 
 MyGLWidget::~MyGLWidget()
@@ -111,8 +113,9 @@ void MyGLWidget::setZoom(int scale)
 void MyGLWidget::initializeGL()
 {
     qglClearColor(Qt::black);
+    glClearColor( 0.05, 0.46, 0.72, 1);
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
+    glDisable(GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);
     glEnable(GL_TEXTURE_2D);
     //glEnable(GL_LIGHTING);
@@ -193,6 +196,8 @@ void MyGLWidget::keyPressEvent(QKeyEvent *event)
         setYTranslation(0.3);
     }else if(event->key() == Qt::Key_E){
         setYTranslation(-0.3);
+    }else if(event->key() == Qt::Key_O){
+        setAngleBras(5);
     }
 }
 
@@ -204,12 +209,38 @@ void MyGLWidget::wheelEvent(QWheelEvent *event)
     setZoom(scale);
 }
 
+void MyGLWidget::setAngleBras(int angle)
+{
+    if (angle > 30){
+        angle = 30;
+    } else if (angle < -135){
+        angle = -135;
+    }
+    angleCorde = (115 + angleBras*1.3);
+    angleBras = angle;
+    emit angleBrasChanged(angle);
+    qDebug() << "Angle : " << angleBras;
 
+    updateGL();
+}
 
 void MyGLWidget::draw()
 {
 
-    treb.drawTrebuchet();
-    //terr.drawTerrain();
+    glColor3f(1,1,1);
+    glPushMatrix();
+        glTranslatef(-330,0,1);
+        glScalef(4,4,4);
+        glRotatef(180,0,0,1);
+        treb.drawTrebuchet(angleBras);
+    glPopMatrix();
+    glColor3f(1,1,1);
+    glPushMatrix();
+        terr.drawTerrain();
+    glPopMatrix();
+    glPushMatrix();
+        targ.drawTarget();
+    glPopMatrix();
+
 }
 

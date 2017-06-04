@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>706</width>
-    <height>415</height>
+    <width>712</width>
+    <height>425</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -102,13 +102,22 @@
            <height>200</height>
           </size>
          </property>
-         <zorder>rotXSlider</zorder>
-         <zorder></zorder>
-         <zorder></zorder>
-         <zorder></zorder>
-         <zorder></zorder>
-         <zorder></zorder>
-         <zorder></zorder>
+         <widget class="QLabel" name="camFrame">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>141</width>
+            <height>121</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Image</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </widget>
        </item>
        <item>
@@ -121,9 +130,21 @@
           </widget>
          </item>
          <item>
-          <widget class="QSlider" name="horizontalSlider">
+          <widget class="QSlider" name="sliderAngleBras">
+           <property name="minimum">
+            <number>-135</number>
+           </property>
+           <property name="maximum">
+            <number>45</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="tickPosition">
+            <enum>QSlider::TicksBelow</enum>
+           </property>
+           <property name="tickInterval">
+            <number>1</number>
            </property>
           </widget>
          </item>
@@ -151,6 +172,13 @@
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>Commencer le tracking de la main</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -158,12 +186,16 @@
   <customwidget>
    <class>MyGLWidget</class>
    <extends>QWidget</extends>
-   <header>myglwidget.h</header>
+   <header location="global">myglwidget.h</header>
    <container>1</container>
    <slots>
     <slot>setXRotation(int)</slot>
     <slot>setZRotation(int)</slot>
     <slot>setYRotation(int)</slot>
+    <slot>setZoom(int)</slot>
+    <slot>setAngleCatapulte(int)</slot>
+    <slot>setAngleBras(int)</slot>
+    <slot>launchBall()</slot>
    </slots>
   </customwidget>
  </customwidgets>
