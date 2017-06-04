@@ -2,7 +2,7 @@
 #define BRAS_H
 #include "cube.h"
 #include "line.h"
-
+#include "boulet.h"
 
 class Bras: public Cube
 {
@@ -15,6 +15,7 @@ private:
     void drawContrepoid();
     float inclinaison=10;
     Line fil;
+    Boulet boule;
     QImage textbois;
 };
 

@@ -59,6 +59,11 @@ void Bras::drawBras(){
                 //Line
                 fil.drawLine();
             glPopMatrix();//PP
+            glPushMatrix();//P
+                //Boulet
+                glTranslatef(9.5,0,0);
+                boule.drawBoulet();
+            glPopMatrix();//PP
         glPopMatrix();//PP
     glPopMatrix();//PP
 

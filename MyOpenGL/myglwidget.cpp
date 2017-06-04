@@ -111,6 +111,7 @@ void MyGLWidget::setZoom(int scale)
 void MyGLWidget::initializeGL()
 {
     qglClearColor(Qt::black);
+    glClearColor( 0.05, 0.46, 0.72, 1);
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);
@@ -205,8 +206,6 @@ void MyGLWidget::wheelEvent(QWheelEvent *event)
     int scale = (int)zoomInt + scroll;
     setZoom(scale);
 }
-
-
 
 void MyGLWidget::draw()
 {
