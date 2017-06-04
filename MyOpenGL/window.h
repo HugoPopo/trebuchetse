@@ -25,6 +25,7 @@ public:
 private slots:
     void update();
     void on_checkBox_clicked();
+    void trackingRect();
 protected:
     void keyPressEvent(QKeyEvent *event);
 
