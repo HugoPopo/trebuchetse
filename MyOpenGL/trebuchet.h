@@ -12,7 +12,7 @@ class Trebuchet: public Cube
 {
 public:
     Trebuchet();
-    void drawTrebuchet();
+    void drawTrebuchet(int angle);
 
 
 private:

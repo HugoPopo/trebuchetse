@@ -68,6 +68,6 @@ void Bras::drawBras(){
     glPopMatrix();//PP
 
 }
-void Bras::setInclinaison(float inc){
+void Bras::setInclinaison(int inc){
     inclinaison=inc;
 }

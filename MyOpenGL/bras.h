@@ -9,11 +9,11 @@ class Bras: public Cube
 public:
     Bras();
     void drawBras();
-    void setInclinaison(float inc);
+    void setInclinaison(int inc);
 private:
     void poutre();
     void drawContrepoid();
-    float inclinaison=10;
+    int inclinaison;
     Line fil;
     Boulet boule;
     QImage textbois;

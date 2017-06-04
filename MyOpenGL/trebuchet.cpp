@@ -5,7 +5,7 @@
 #include <QGLWidget>
 #include <QOpenGLTexture>
 #include <GL/glu.h>
-
+#include <QDebug>
 //Methode de la classe Trebuchet :
 //Permettant de dessiner et de gérer le déplacement du trébuchet
 
@@ -75,7 +75,7 @@ scale .15 .15 .5
 
 
 
-void Trebuchet::drawTrebuchet()
+void Trebuchet::drawTrebuchet(int angle)
 {
 //Poutre Sol
 glPushMatrix();
@@ -126,6 +126,7 @@ glPushMatrix();
     glTranslatef(1.25,0.25,2.75);
     fulcrum();
 glPopMatrix();
+bras.setInclinaison(angle);
 
 bras.drawBras();
 
