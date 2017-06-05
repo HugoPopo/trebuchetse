@@ -23,7 +23,7 @@ Window::Window(QWidget *parent) :
     connect(timerChrono, SIGNAL(timeout()), this, SLOT(updateTime()));
     timerChrono->start(1000);
     updateTime();
-
+    i=0;
 
     //Camera
     cam=new VideoCapture(0);
@@ -43,12 +43,12 @@ Window::Window(QWidget *parent) :
 
     templateRect= new Rect((frameWidth-templateWidth)/2,(frameHeight-templateHeight)/2, templateWidth,templateHeight);
     //Changement lié au trébuchet
-    connect(this, SIGNAL(posYChanged(int)),ui->myGLWidget, SLOT(setposY(int)));
+    connect(this, SIGNAL(angleTrebChanged(int)),ui->myGLWidget, SLOT(setAngleTreb(int)));
     connect(this, SIGNAL(angleBrasChanged(int)),ui->myGLWidget, SLOT(setAngleBras(int)));
     //Timer
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
-    timer->start(50);
+    timer->start(100);
 
 
     go =false;
@@ -89,8 +89,13 @@ void Window::update(){
             QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
             ui->camFrame->setPixmap(QPixmap::fromImage(img));
             qDebug()<<resultRect.x;
-            posYChanged(resultRect.x);
-
+            angleTrebChanged(resultRect.x);
+            i++;
+            if(i>200){
+             ui->checkBox->setChecked(false);
+             i=0;
+             go=false;
+            }
         }
     }
 }
@@ -114,13 +119,7 @@ void Window::on_checkBox_clicked()
     }
 }
 
-void Window::keyPressEvent(QKeyEvent *e)
-{
-    if (e->key() == Qt::Key_Escape)
-        close();
-    else
-        QWidget::keyPressEvent(e);
-}
+
 
 void Window::updateTime()
 {

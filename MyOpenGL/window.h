@@ -46,6 +46,7 @@ private:
     bool go;
     int angle=0;
     int posY=0;
+    int i;
 private slots:
     void update();
     void on_checkBox_clicked();
@@ -55,7 +56,7 @@ private slots:
 signals:
 
     //Gestion Angle Bras et position trébuchet
-    void posYChanged(int angleCatapulte);
+    void angleTrebChanged(int angleTreb);
     void angleBrasChanged(int angle);
 };
 

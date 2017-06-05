@@ -16,13 +16,13 @@ MyGLWidget::MyGLWidget(QWidget *parent)
     yTra = 0;
     zTra = -10;
 
-    xRot = -45;
-    yRot = 0;
+    xRot = 0;
+    yRot = -45;
     zRot = 0;
     zoom = 0.05;
     //Init
     setAngleBras(45);
-    posYTreb = 0;
+    angleTreb = 45;
 }
 
 MyGLWidget::~MyGLWidget()
@@ -200,6 +200,7 @@ void MyGLWidget::keyPressEvent(QKeyEvent *event)
     }else if(event->key() == Qt::Key_O){
         setAngleBras(5);
     }
+
 }
 
 void MyGLWidget::wheelEvent(QWheelEvent *event)
@@ -223,23 +224,22 @@ void MyGLWidget::setAngleBras(int angle)
 
     updateGL();
 }
-void MyGLWidget::setposY(int position)
+void MyGLWidget::setAngleTreb(int angle)
 {
-    position=position-75;
-    posYTreb = position;
-    emit posYChanged(posYTreb);
-    qDebug() << "Position : " << posYTreb;
 
-    updateGL();
+
+    angleTreb = angle;
+    emit angleTrebChanged(angle);
+        updateGL();
 }
 void MyGLWidget::draw()
 {
 
     glColor3f(1,1,1);
     glPushMatrix();
-        glTranslatef(-330,posYTreb,1);
+        glTranslatef(-330,0,1);
         glScalef(4,4,4);
-        glRotatef(180,0,0,1);
+        glRotatef(180+angleTreb,0,0,1);
         treb.drawTrebuchet(angleBras);
     glPopMatrix();
     glColor3f(1,1,1);

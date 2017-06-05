@@ -46,7 +46,7 @@ public slots:
     void setZoom(int scale);
     //Gestion Angle Bras
     void setAngleBras(int angle);
-    void setposY(int position);
+    void setAngleTreb(int angle);
 signals:
     // signaling rotation from mouse movement
     void xTranslationChanged(float dist);
@@ -57,7 +57,7 @@ signals:
     void zRotationChanged(int angle);
     void zoomChanged(int scale);
     //Gestion Angle Bras et position trébuchet
-    void posYChanged(int angleCatapulte);
+    void angleTrebChanged(int angle);
     void angleBrasChanged(int angle);
 
 private:
@@ -82,8 +82,7 @@ private:
     float angleCorde;
     int angleBras;  // Angle du bras du trébuchet
     int puissance;  //Puissance de jeter de la balle
-    int posYTreb; //Position du trébucher selon l'axe Y
-
+    int angleTreb; //Angle du trebuchet
     float xTra;
     float yTra;
     float zTra;
