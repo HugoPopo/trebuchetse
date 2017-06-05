@@ -14,53 +14,64 @@ Window::Window(QWidget *parent) :
     ui(new Ui::Window)
 {
     ui->setupUi(this);
-   //Camera
-   cam=new VideoCapture(0);
+    // chrono
+    timeManche = new QTime(0,0,0);
+    timeTotal = new QTime(0,0,0);
+    qDebug()<<"manche"<<timeManche->toString("hh:mm:ss");
+    qDebug()<<"Total"<<timeTotal->toString("hh:mm:ss");
+    timerChrono = new QTimer(this);
+    connect(timerChrono, SIGNAL(timeout()), this, SLOT(updateTime()));
+    timerChrono->start(1000);
+    updateTime();
 
 
-   if(!cam->isOpened())  // check if we succeeded
-   {
-     qDebug()<<":/";
-   }
+    //Camera
+    cam=new VideoCapture(0);
+
+
+    if(!cam->isOpened())  // check if we succeeded
+    {
+        qDebug()<<":/";
+    }
     //Dimension de la camera
-   int frameWidth=cam->get(CV_CAP_PROP_FRAME_WIDTH);
-   int frameHeight=cam->get(CV_CAP_PROP_FRAME_HEIGHT);
-   frameWidth=frameWidth/2;
-   frameHeight=frameHeight/2;
-   cam->set(CV_CAP_PROP_FRAME_WIDTH, frameWidth);
-   cam->set(CV_CAP_PROP_FRAME_HEIGHT, frameHeight);
+    int frameWidth=cam->get(CV_CAP_PROP_FRAME_WIDTH);
+    int frameHeight=cam->get(CV_CAP_PROP_FRAME_HEIGHT);
+    frameWidth=frameWidth/2;
+    frameHeight=frameHeight/2;
+    cam->set(CV_CAP_PROP_FRAME_WIDTH, frameWidth);
+    cam->set(CV_CAP_PROP_FRAME_HEIGHT, frameHeight);
 
     templateRect= new Rect((frameWidth-templateWidth)/2,(frameHeight-templateHeight)/2, templateWidth,templateHeight);
-     connect(ui->myGLWidget, SIGNAL(angleBrasChanged(int)), ui->sliderAngleBras, SLOT(setValue(int)));
+    connect(ui->myGLWidget, SIGNAL(angleBrasChanged(int)), ui->sliderAngleBras, SLOT(setValue(int)));
     //connect(ui->myGLWidget, SIGNAL(xRotationChanged(int)), ui->rotXSlider, SLOT(setValue(int)));
     //connect(ui->myGLWidget, SIGNAL(yRotationChanged(int)), ui->rotYSlider, SLOT(setValue(int)));
     //connect(ui->myGLWidget, SIGNAL(zRotationChanged(int)), ui->rotZSlider, SLOT(setValue(int)));
-     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
-     timer->start(50);
+    timer->start(50);
 
 
-     go =false;
+    go =false;
 
 }
 void Window::update(){
 
 
 
-        if (cam->read(image)) {   // Capture a frame
+    if (cam->read(image)) {   // Capture a frame
 
-           flip(image,image,1);
-           templateImage = Mat(image, *templateRect).clone();
-           if(!go){
-           rectangle(image, *templateRect, Scalar(0,0,255),2,8,0);
-           }
-           float newsize = (ui->myGLWidget->width())/5;
-           cv::resize(image, image, Size(newsize, newsize), 0, 0, INTER_LINEAR);
-           cvtColor(image,image,CV_BGR2RGB);
-           QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
-           ui->camFrame->setPixmap(QPixmap::fromImage(img));
-          }
+        flip(image,image,1);
+        templateImage = Mat(image, *templateRect).clone();
+        if(!go){
+            rectangle(image, *templateRect, Scalar(0,0,255),2,8,0);
+        }
+        float newsize = (ui->myGLWidget->width())/5;
+        cv::resize(image, image, Size(newsize, newsize), 0, 0, INTER_LINEAR);
+        cvtColor(image,image,CV_BGR2RGB);
+        QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
+        ui->camFrame->setPixmap(QPixmap::fromImage(img));
     }
+}
 
 Window::~Window()
 {
@@ -102,27 +113,27 @@ void Window::trackingRect(){
 
     }
 }
-    void Window::on_checkBox_clicked()
-    {
-        if(ui->checkBox->isChecked()){
-            go=true;
-            // Create the matchTemplate image result
-                // to store the matchTemplate result
-            int result_cols =  image.cols - templateImage.cols + 1;
-            int result_rows = image.rows - templateImage.rows + 1;
-            resultImage.create( result_cols, result_rows, CV_32FC1 );
-            //imshow("template img",templateImage);
-            matchImage=templateImage;
-            //On change l'affichage pour suivre la main avec un nouveau rectangle
-            timer->stop();
-            connect(timer, SIGNAL(timeout()), this, SLOT(trackingRect()));
-            timer->start(50);
-        }else{
-            go=false;
-            timer->stop();
-            //reset();
-        }
+void Window::on_checkBox_clicked()
+{
+    if(ui->checkBox->isChecked()){
+        go=true;
+        // Create the matchTemplate image result
+        // to store the matchTemplate result
+        int result_cols =  image.cols - templateImage.cols + 1;
+        int result_rows = image.rows - templateImage.rows + 1;
+        resultImage.create( result_cols, result_rows, CV_32FC1 );
+        //imshow("template img",templateImage);
+        matchImage=templateImage;
+        //On change l'affichage pour suivre la main avec un nouveau rectangle
+        timer->stop();
+        connect(timer, SIGNAL(timeout()), this, SLOT(trackingRect()));
+        timer->start(50);
+    }else{
+        go=false;
+        timer->stop();
+        //reset();
     }
+}
 
 void Window::keyPressEvent(QKeyEvent *e)
 {
@@ -134,7 +145,12 @@ void Window::keyPressEvent(QKeyEvent *e)
 
 void Window::updateTime()
 {
-    QTime time = QTime::currentTime();
-    QString text = time.toString("hh:mm:ss");
+    //QTime time = QTime::currentTime();
+    //QString text = time.toString("hh:mm:ss");
+
+    *timeManche = timeManche->addSecs(1);
+    qDebug()<<timeManche->toString("hh:mm:ss");
+    //timeTotal->addSecs(1);
+    QString text = timeManche->toString("hh:mm:ss");
     ui->chrono_label->setText(text);
 }

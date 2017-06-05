@@ -22,10 +22,7 @@ class Window : public QWidget
 public:
     explicit Window(QWidget *parent = 0);
     ~Window();
-private slots:
-    void update();
-    void on_checkBox_clicked();
-    void trackingRect();
+
 protected:
     void keyPressEvent(QKeyEvent *event);
 
@@ -33,6 +30,9 @@ private:
     Ui::Window *ui;
     QTimer *timer = new QTimer(this);
     QTimer *timer2 = new QTimer(this);
+    QTimer *timerChrono  = new QTimer(this);
+    QTime *timeManche;
+    QTime *timeTotal;
     //Reconnaissance main
     int templateWidth = 60;
     int templateHeight = 60;
@@ -45,8 +45,10 @@ private:
     bool go;
 
 private slots:
+    void update();
+    void on_checkBox_clicked();
+    void trackingRect();
     void updateTime();
-
 };
 
 #endif // WINDOW_H

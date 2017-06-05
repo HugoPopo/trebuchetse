@@ -10,7 +10,7 @@ public:
     Bras();
     void drawBras();
     void setInclinaison(int inc);
-    Boulet getBoulet() { return boulet };
+    Boulet getBoulet() { return boulet; };
 private:
     void poutre();
     void drawContrepoid();

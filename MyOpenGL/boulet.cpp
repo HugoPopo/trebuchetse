@@ -6,6 +6,13 @@
 #include <QOpenGLTexture>
 #include <GL/glu.h>
 
+// constante gravitationnel
+static const double G = 9.81;
+// position initiale
+static const double X0 = 1;
+static const double Y0 = 1;
+static const double Z0 = 1;
+
 Boulet::Boulet()
 {
     textrock=QImage(":/texture/Image/rock.JPG");
