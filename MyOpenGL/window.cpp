@@ -91,7 +91,7 @@ void Window::update(){
             qDebug()<<resultRect.x;
             angleTrebChanged(resultRect.x);
             i++;
-            if(i>200){
+            if(i>150){
              ui->checkBox->setChecked(false);
              i=0;
              go=false;
@@ -119,7 +119,12 @@ void Window::on_checkBox_clicked()
     }
 }
 
-
+void Window::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Space){
+        ui->checkBox->setChecked(true);
+    }
+}
 
 void Window::updateTime()
 {

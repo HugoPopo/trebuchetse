@@ -239,7 +239,7 @@ void MyGLWidget::draw()
     glPushMatrix();
         glTranslatef(-330,0,1);
         glScalef(4,4,4);
-        glRotatef(180+angleTreb,0,0,1);
+        glRotatef(100+angleTreb,0,0,1);
         treb.drawTrebuchet(angleBras);
     glPopMatrix();
     glColor3f(1,1,1);
