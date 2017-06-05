@@ -12,7 +12,7 @@ class Trebuchet: public Cube
 {
 public:
     Trebuchet();
-    void drawTrebuchet(int angle);
+    void drawTrebuchet(int angle,float pointf2,float pointf3,float pointf4);
     Bras getBras() { return bras; };
 
 private:
@@ -24,6 +24,8 @@ private:
     int angleCatapulte;
     int angleBras;
     QImage textbois;
+
+    float pointf2,pointf3,pointf4;//Point finaux des lignes 2 à 4
 };
 
 #endif // TREBUCHET_H

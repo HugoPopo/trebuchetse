@@ -9,6 +9,9 @@
 Bras::Bras()
 {
     textbois=QImage(":/texture/Image/bois.jpg");
+    pointf2 = 0;
+    pointf3 = 0;
+    pointf4 = 0;
 }
 
 void Bras::drawContrepoid()
@@ -39,7 +42,7 @@ void Bras::poutre()
         drawCubeTexture();
     glPopMatrix();
 }
-void Bras::drawBras(){
+void Bras::drawBras(float pointf2,float pointf3,float pointf4){
 
     glPushMatrix();//P
         glRotatef(inclinaison,0,1,0);
@@ -58,7 +61,10 @@ void Bras::drawBras(){
             glPushMatrix();//P
                 glTranslatef(8,0,0);
                 //Line
-                fil.drawLine();
+                fil.setpointf2(pointf2);
+                fil.setpointf3(pointf3);
+                fil.setpointf4(pointf4);
+                fil.drawLine(fil.getpointf2(),fil.getpointf3(),fil.getpointf4());
             glPopMatrix();//PP
             glPushMatrix();//P
                 //Boulet

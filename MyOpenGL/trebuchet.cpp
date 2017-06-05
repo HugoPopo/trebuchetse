@@ -15,6 +15,9 @@ Trebuchet::Trebuchet()
     angleCatapulte = 0;
     angleBras = 0;
     textbois=QImage(":/texture/Image/bois.jpg");
+    pointf2 = 0;
+    pointf3 = 0;
+    pointf4 = 0;
 }
 
 
@@ -30,7 +33,6 @@ void Trebuchet::poutreSol()
         glPushMatrix();
             glTranslatef(0, 0, 0.125);
             glScalef (3,0.125, 0.125);
-            ;
         glPopMatrix();
 }
 
@@ -75,7 +77,7 @@ scale .15 .15 .5
 
 
 
-void Trebuchet::drawTrebuchet(int angle)
+void Trebuchet::drawTrebuchet(int angle,float pointf2,float pointf3,float pointf4)
 {
 //Poutre Sol
 glPushMatrix();
@@ -128,6 +130,6 @@ glPushMatrix();
 glPopMatrix();
 bras.setInclinaison(angle);
 
-bras.drawBras();
+bras.drawBras(pointf2,pointf3,pointf4);
 
 }

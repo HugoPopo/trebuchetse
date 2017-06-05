@@ -47,6 +47,8 @@ private:
     int angle=0;
     int posY=0;
     int i;
+    //animation corde
+    float pointf2,pointf3, pointf4;
 private slots:
     void update();
     void on_checkBox_clicked();
@@ -58,6 +60,8 @@ signals:
     //Gestion Angle Bras et position trébuchet
     void angleTrebChanged(int angleTreb);
     void angleBrasChanged(int angle);
+    //Gestion Ligne
+    void pointChanged(float pointf2,float pointf3,float pointf4);
 };
 
 #endif // WINDOW_H

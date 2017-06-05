@@ -47,6 +47,7 @@ public slots:
     //Gestion Angle Bras
     void setAngleBras(int angle);
     void setAngleTreb(int angle);
+    void setPoint(float pointf2,float pointf3,float pointf4);
 signals:
     // signaling rotation from mouse movement
     void xTranslationChanged(float dist);
@@ -59,7 +60,8 @@ signals:
     //Gestion Angle Bras et position trébuchet
     void angleTrebChanged(int angle);
     void angleBrasChanged(int angle);
-
+    //Gestion Ligne
+    void pointChanged(float pointf2,float pointf3,float pointf4);
 private:
     void draw();
     //Objet à dessiner
@@ -79,7 +81,7 @@ private:
     float calcScore; //Fonction qui va nous permettre de calculer le score, calcule de la distance entre l'impact et la cible
     float impX; //Coordonnées de l'impact
     float impY;
-    float angleCorde;
+
     int angleBras;  // Angle du bras du trébuchet
     int puissance;  //Puissance de jeter de la balle
     int angleTreb; //Angle du trebuchet
@@ -90,6 +92,8 @@ private:
     float zoom;
 
     QPoint lastPos;
+    //animation corde
+    float point2,point3, point4;
 };
 
 #endif // MYGLWIDGET_H

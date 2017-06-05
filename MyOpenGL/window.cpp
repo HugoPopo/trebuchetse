@@ -45,6 +45,8 @@ Window::Window(QWidget *parent) :
     //Changement lié au trébuchet
     connect(this, SIGNAL(angleTrebChanged(int)),ui->myGLWidget, SLOT(setAngleTreb(int)));
     connect(this, SIGNAL(angleBrasChanged(int)),ui->myGLWidget, SLOT(setAngleBras(int)));
+    //Pour la corde :'(
+    connect(this, SIGNAL(pointChanged(float,float,float)),ui->myGLWidget, SLOT(setPoint(float,float,float)));
     //Timer
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
@@ -89,9 +91,11 @@ void Window::update(){
             QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
             ui->camFrame->setPixmap(QPixmap::fromImage(img));
             qDebug()<<resultRect.y;
+            //Changement Rotation du trébuchet suivi du bras :p
             angleTrebChanged(resultRect.x);
-
             angleBrasChanged(resultRect.y);
+            //Le fil
+            pointChanged(resultRect.x*0.01,resultRect.y*0.01,resultRect.x*0.01);
             i++;
             if(i>140){
              ui->checkBox->setChecked(false);

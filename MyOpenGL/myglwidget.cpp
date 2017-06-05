@@ -24,6 +24,10 @@ MyGLWidget::MyGLWidget(QWidget *parent)
     //Init
     setAngleBras(45);
     angleTreb = 45;
+    //
+    point2 = 0;
+    point3 = 0;
+    point4 = 0;
 }
 
 MyGLWidget::~MyGLWidget()
@@ -211,7 +215,7 @@ void MyGLWidget::wheelEvent(QWheelEvent *event)
     int scale = (int)zoomInt + scroll;
     setZoom(scale);
 }
-
+//Angle bras
 void MyGLWidget::setAngleBras(int angle)
 {
 
@@ -221,6 +225,7 @@ void MyGLWidget::setAngleBras(int angle)
 
     updateGL();
 }
+//Angle trébuchet
 void MyGLWidget::setAngleTreb(int angle)
 {
 
@@ -229,6 +234,16 @@ void MyGLWidget::setAngleTreb(int angle)
     emit angleTrebChanged(angle);
 
 }
+
+void MyGLWidget::setPoint(float pointf2, float pointf3, float pointf4)
+{
+        point2=pointf2;
+        point3=pointf3;
+        point4=pointf4;
+        emit pointChanged(pointf2,pointf3,pointf4);
+        updateGL();
+    }
+
 void MyGLWidget::draw()
 {
 
@@ -237,7 +252,7 @@ void MyGLWidget::draw()
         glTranslatef(-330,0,1);
         glScalef(4,4,4);
         glRotatef(100+angleTreb,0,0,1);
-        treb.drawTrebuchet(angleBras);
+        treb.drawTrebuchet(angleBras,point2,point3,point4);
     glPopMatrix();
     glColor3f(1,1,1);
     glPushMatrix();
