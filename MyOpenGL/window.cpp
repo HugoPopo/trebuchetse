@@ -48,7 +48,7 @@ Window::Window(QWidget *parent) :
     //Timer
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
-    timer->start(100);
+    timer->start(120);
 
 
     go =false;
@@ -88,10 +88,12 @@ void Window::update(){
              cvtColor(image,image,CV_BGR2RGB);
             QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
             ui->camFrame->setPixmap(QPixmap::fromImage(img));
-            qDebug()<<resultRect.x;
+            qDebug()<<resultRect.y;
             angleTrebChanged(resultRect.x);
+
+            angleBrasChanged(resultRect.y);
             i++;
-            if(i>150){
+            if(i>140){
              ui->checkBox->setChecked(false);
              i=0;
              go=false;

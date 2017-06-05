@@ -199,7 +199,7 @@ void MyGLWidget::keyPressEvent(QKeyEvent *event)
     }else if(event->key() == Qt::Key_E){
         setYTranslation(-0.3);
     }else if(event->key() == Qt::Key_O){
-        setAngleBras(5);
+        setAngleBras(100);
     }
 
 }
@@ -214,12 +214,8 @@ void MyGLWidget::wheelEvent(QWheelEvent *event)
 
 void MyGLWidget::setAngleBras(int angle)
 {
-    if (angle > 30){
-        angle = 30;
-    } else if (angle < -135){
-        angle = -135;
-    }
-    angleBras = angle;
+
+    angleBras = angle-20;
     emit angleBrasChanged(angle);
     qDebug() << "Angle : " << angleBras;
 
@@ -231,7 +227,7 @@ void MyGLWidget::setAngleTreb(int angle)
 
     angleTreb = angle;
     emit angleTrebChanged(angle);
-        updateGL();
+
 }
 void MyGLWidget::draw()
 {
