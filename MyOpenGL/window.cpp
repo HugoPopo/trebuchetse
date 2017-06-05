@@ -36,8 +36,8 @@ Window::Window(QWidget *parent) :
     //Dimension de la camera
     int frameWidth=cam->get(CV_CAP_PROP_FRAME_WIDTH);
     int frameHeight=cam->get(CV_CAP_PROP_FRAME_HEIGHT);
-    frameWidth=frameWidth/2;
-    frameHeight=frameHeight/2;
+    frameWidth=frameWidth/6;
+    frameHeight=frameHeight/6;
     cam->set(CV_CAP_PROP_FRAME_WIDTH, frameWidth);
     cam->set(CV_CAP_PROP_FRAME_HEIGHT, frameHeight);
 
@@ -58,22 +58,40 @@ void Window::update(){
 
 
 
-    if (cam->read(image)) {   // Capture a frame
+    if(!go){
+        if (cam->read(image)) {   // Capture a frame
+           flip(image,image,1);
+           templateImage = Mat(image, *templateRect).clone();
+           rectangle(image, *templateRect, Scalar(0,0,255),2,8,0);
+           //float newsize = (ui->centralWidget->width())/5;
+           //cv::resize(image, image, Size(newsize, newsize), 0, 0, INTER_LINEAR);
+           cvtColor(image,image,CV_BGR2RGB);
+           QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
+           ui->camFrame->setPixmap(QPixmap::fromImage(img));
+         }
+    } else {
+        if (cam->read(image)) // get a new frame from camera
+        {
+            Rect resultRect;
+            double minVal; double maxVal; Point minLoc; Point maxLoc;
+            maxVal=0.20;
+            // vertical flip of the image
+            flip(image,image,1);
+            // Do the Matching between the frame and the templateImage
+            matchTemplate(image, matchImage, resultImage, TM_CCORR_NORMED);
+            // Localize the best match with minMaxLoc
+            minMaxLoc( resultImage, &minVal, &maxVal, &minLoc, &maxLoc, Mat() );
+            // Save the location fo the matched rect
+            resultRect=Rect(maxLoc.x,maxLoc.y,templateWidth,templateHeight);
+            rectangle(image,resultRect,Scalar( 0, 255, 0),2,8,0);
+            // Display the image
+             cvtColor(image,image,CV_BGR2RGB);
+            QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
+            ui->camFrame->setPixmap(QPixmap::fromImage(img));
+            qDebug()<<resultRect.x;
+            posYChanged(resultRect.x);
 
-        flip(image,image,1);
-        templateImage = Mat(image, *templateRect).clone();
-        if(!go){
-            rectangle(image, *templateRect, Scalar(0,0,255),2,8,0);
         }
-        float newsize = (ui->myGLWidget->width())/5;
-        cv::resize(image, image, Size(newsize, newsize), 0, 0, INTER_LINEAR);
-        cvtColor(image,image,CV_BGR2RGB);
-        QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
-        ui->camFrame->setPixmap(QPixmap::fromImage(img));
-        //Update position treb
-        angleBrasChanged(angle);
-        posYChanged(posY);
-        posY++;
     }
 }
 
@@ -81,61 +99,18 @@ Window::~Window()
 {
     delete ui;
 }
-void Window::trackingRect(){
 
-    if (cam->read(image)) // Nouvelle Image de la camera
-    {
-        Rect resultRect;
-        // On retourne l'image
-        flip(image,image,1);
-
-        // Do the Matching between the frame and the templateImage
-        matchTemplate( image, matchImage, resultImage, TM_CCORR_NORMED );
-
-        // Localize the best match with minMaxLoc
-        double minVal; double maxVal; Point minLoc; Point maxLoc;
-        minMaxLoc( resultImage, &minVal, &maxVal, &minLoc, &maxLoc, Mat() );
-        // Save the location fo the matched rect
-        resultRect=Rect(maxLoc.x,maxLoc.y,templateWidth,templateHeight);
-        // Show the result
-        Mat normResultImage;
-        // Normalize values
-        normalize(resultImage,normResultImage,1,0,NORM_MINMAX);
-        // Return to RGB to plot the max in red
-        cvtColor(normResultImage,normResultImage,CV_GRAY2RGB);
-        // Draw a red square
-        rectangle(normResultImage,Rect(maxLoc.x,maxLoc.y,3,3),Scalar( 0, 0, 1),2,8,0);
-        // Draw green rectangle on the frame
-        rectangle(image,resultRect,Scalar( 0, 255, 0),2,8,0);
-        // Display the image
-
-        float newsize = (ui->myGLWidget->width())/5;
-        cv::resize(image, image, Size(newsize, newsize), 0, 0, INTER_LINEAR);
-        cvtColor(image,image,CV_BGR2RGB);
-        QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
-        ui->camFrame->setPixmap(QPixmap::fromImage(img));
-
-    }
-}
 void Window::on_checkBox_clicked()
 {
     if(ui->checkBox->isChecked()){
-        go=true;
         // Create the matchTemplate image result
         // to store the matchTemplate result
         int result_cols =  image.cols - templateImage.cols + 1;
         int result_rows = image.rows - templateImage.rows + 1;
         resultImage.create( result_cols, result_rows, CV_32FC1 );
-        //imshow("template img",templateImage);
         matchImage=templateImage;
-        //On change l'affichage pour suivre la main avec un nouveau rectangle
-        timer->stop();
-        connect(timer, SIGNAL(timeout()), this, SLOT(trackingRect()));
-        timer->start(50);
-    }else{
-        go=false;
-        timer->stop();
-        //reset();
+
+        go=true;
     }
 }
 

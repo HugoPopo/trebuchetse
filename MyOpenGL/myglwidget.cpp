@@ -225,7 +225,7 @@ void MyGLWidget::setAngleBras(int angle)
 }
 void MyGLWidget::setposY(int position)
 {
-
+    position=position-75;
     posYTreb = position;
     emit posYChanged(posYTreb);
     qDebug() << "Position : " << posYTreb;

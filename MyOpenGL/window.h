@@ -34,8 +34,9 @@ private:
     QTime *timeManche;
     QTime *timeTotal;
     //Reconnaissance main
-    int templateWidth = 60;
-    int templateHeight = 60;
+    //Dimension du rectangle
+    int templateWidth = 30;
+    int templateHeight = 30;
     Rect *templateRect;
     VideoCapture * cam;
     Mat templateImage;
@@ -48,7 +49,7 @@ private:
 private slots:
     void update();
     void on_checkBox_clicked();
-    void trackingRect();
+
     void updateTime();
 
 signals:
