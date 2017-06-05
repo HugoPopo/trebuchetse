@@ -5,9 +5,10 @@
 #include <QGLWidget>
 #include <QOpenGLTexture>
 #include <GL/glu.h>
+
 Boulet::Boulet()
 {
- textrock=QImage(":/texture/Image/rock.JPG");
+    textrock=QImage(":/texture/Image/rock.JPG");
 }
 
 

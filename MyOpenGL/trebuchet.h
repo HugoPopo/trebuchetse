@@ -13,7 +13,7 @@ class Trebuchet: public Cube
 public:
     Trebuchet();
     void drawTrebuchet(int angle);
-
+    Bras getBras() { return bras; };
 
 private:
     Bras bras;

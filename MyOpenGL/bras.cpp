@@ -8,9 +8,9 @@
 
 Bras::Bras()
 {
-  textbois=QImage(":/texture/Image/bois.jpg");
-
+    textbois=QImage(":/texture/Image/bois.jpg");
 }
+
 void Bras::drawContrepoid()
 {
     QOpenGLTexture* text1 = new QOpenGLTexture(textbois);
@@ -24,6 +24,7 @@ void Bras::drawContrepoid()
             drawCubeTexture();
        glPopMatrix();
 }
+
 void Bras::poutre()
 {
     QOpenGLTexture* text1 = new QOpenGLTexture(textbois);
@@ -62,7 +63,7 @@ void Bras::drawBras(){
             glPushMatrix();//P
                 //Boulet
                 glTranslatef(9.5,0,0);
-                boule.drawBoulet();
+                boulet.drawBoulet();
             glPopMatrix();//PP
         glPopMatrix();//PP
     glPopMatrix();//PP

@@ -10,12 +10,14 @@ public:
     Bras();
     void drawBras();
     void setInclinaison(int inc);
+    Boulet getBoulet() { return boulet };
 private:
     void poutre();
     void drawContrepoid();
     int inclinaison;
     Line fil;
-    Boulet boule;
+    Boulet boulet;
+    double masseContrePoids;
     QImage textbois;
 };
 
