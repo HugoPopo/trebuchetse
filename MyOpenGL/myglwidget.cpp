@@ -217,14 +217,21 @@ void MyGLWidget::setAngleBras(int angle)
     } else if (angle < -135){
         angle = -135;
     }
-    angleCorde = (115 + angleBras*1.3);
     angleBras = angle;
     emit angleBrasChanged(angle);
     qDebug() << "Angle : " << angleBras;
 
     updateGL();
 }
+void MyGLWidget::setposY(int position)
+{
 
+    posYTreb = position;
+    emit posYChanged(posYTreb);
+    qDebug() << "Position : " << posYTreb;
+
+    updateGL();
+}
 void MyGLWidget::draw()
 {
 

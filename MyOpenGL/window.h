@@ -44,6 +44,7 @@ private:
     Mat image;
     bool go;
     int angle=0;
+    int posY=0;
 private slots:
     void update();
     void on_checkBox_clicked();

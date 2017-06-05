@@ -43,7 +43,7 @@ Window::Window(QWidget *parent) :
 
     templateRect= new Rect((frameWidth-templateWidth)/2,(frameHeight-templateHeight)/2, templateWidth,templateHeight);
     //Changement lié au trébuchet
-    connect(this, SIGNAL(posYChanged(int)),ui->myGLWidget, SLOT(posYChanged(int)));
+    connect(this, SIGNAL(posYChanged(int)),ui->myGLWidget, SLOT(setposY(int)));
     connect(this, SIGNAL(angleBrasChanged(int)),ui->myGLWidget, SLOT(setAngleBras(int)));
     //Timer
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
@@ -72,6 +72,8 @@ void Window::update(){
         ui->camFrame->setPixmap(QPixmap::fromImage(img));
         //Update position treb
         angleBrasChanged(angle);
+        posYChanged(posY);
+        posY++;
     }
 }
 

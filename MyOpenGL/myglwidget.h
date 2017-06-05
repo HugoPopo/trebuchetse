@@ -46,6 +46,7 @@ public slots:
     void setZoom(int scale);
     //Gestion Angle Bras
     void setAngleBras(int angle);
+    void setposY(int position);
 signals:
     // signaling rotation from mouse movement
     void xTranslationChanged(float dist);
@@ -55,7 +56,8 @@ signals:
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
     void zoomChanged(int scale);
-    //Gestion Angle Bras
+    //Gestion Angle Bras et position trébuchet
+    void posYChanged(int angleCatapulte);
     void angleBrasChanged(int angle);
 
 private:
