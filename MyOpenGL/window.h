@@ -11,6 +11,9 @@
 #include<QLabel>
 using namespace cv;
 
+//La classe Window permet de definir notre fenetre principale, de mettre les
+//chronomettre, de récuperer les informations sur l'utilisateurs(mouvement)
+
 namespace Ui {
 class Window;
 }

@@ -2,7 +2,6 @@
 
 #ifndef MYGLWIDGET_H
 #define MYGLWIDGET_H
-
 #include <QGLWidget>
 #include <QOpenGLTexture>
 #include <GL/glu.h>
@@ -10,7 +9,8 @@
 #include "trebuchet.h"
 #include "target.h"
 #include "terrain.h"
-
+//La classe MyGLWidget est notre classe principale elle permet de dessiner les éléments
+//de notre "jeu"
 class MyGLWidget : public QGLWidget
 {
     Q_OBJECT
@@ -22,12 +22,16 @@ signals:
 public slots:
 
 protected:
+    //Permet d'initialiser certains paramètre lié a openGL ex:Texture
     void initializeGL();
+    //Permet de dessiner sur le Widget
     void paintGL();
+    //Permet de redimenssionner la fenètre
     void resizeGL(int width, int height);
 
     QSize minimumSizeHint() const;
     QSize sizeHint() const;
+    //Pour gerer les èvenements utilisateurs
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void keyPressEvent(QKeyEvent *);
@@ -36,6 +40,7 @@ protected:
 
 public slots:
     // slots for xyz-rotation slider
+
     void setXTranslation(float dist);
     void setYTranslation(float dist);
     void setZTranslation(float dist);
@@ -46,7 +51,9 @@ public slots:
     void setZoom(int scale);
     //Gestion Angle Bras
     void setAngleBras(int angle);
+    //gestion angle du trébuchet
     void setAngleTreb(int angle);
+    //Gestion de l'animation du fil
     void setPoint(float pointf2,float pointf3,float pointf4);
 signals:
     // signaling rotation from mouse movement
@@ -68,14 +75,18 @@ private:
     Trebuchet treb;
     Target targ;
     Terrain terr;
-    //
+    //Rotation de la caméra
     int xRot;
     int yRot;
     int zRot;
+    //Translation de la caméra
+    float xTra;
+    float yTra;
+    float zTra;
+
     //Données nécessaire pour le jeu
 
     void calcTraf();    //Fonction qui va nous permettre de calculer la trajectoire de la balle
-    void genTarget(); //Génération d'une cible en fonction de la difficulté
     int level; //Niveau de difficulté (3 niveaux de difficulté, facile, moyen difficile)
     bool visibleImpact;
     float calcScore; //Fonction qui va nous permettre de calculer le score, calcule de la distance entre l'impact et la cible
@@ -85,14 +96,11 @@ private:
     int angleBras;  // Angle du bras du trébuchet
     int puissance;  //Puissance de jeter de la balle
     int angleTreb; //Angle du trebuchet
-    float xTra;
-    float yTra;
-    float zTra;
 
     float zoom;
 
     QPoint lastPos;
-    //animation corde
+    //Points liés à l'animation de la corde
     float point2,point3, point4;
 };
 
