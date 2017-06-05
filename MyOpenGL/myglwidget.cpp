@@ -16,10 +16,11 @@ MyGLWidget::MyGLWidget(QWidget *parent)
     yTra = 0;
     zTra = -10;
 
-    xRot = 0;
-    yRot = -45;
-    zRot = 0;
-    zoom = 0.05;
+    xRot = -60*16;
+
+    yRot = 0;
+    zRot = 90*16;
+    zoom = 0.008;
     //Init
     setAngleBras(45);
     angleTreb = 45;
