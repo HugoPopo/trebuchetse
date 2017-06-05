@@ -78,9 +78,9 @@ private:
     float impX; //Coordonnées de l'impact
     float impY;
     float angleCorde;
-    int angleBras;  // Angle du bras de la catapulte
+    int angleBras;  // Angle du bras du trébuchet
     int puissance;  //Puissance de jeter de la balle
-
+    int posYTreb; //Position du trébucher selon l'axe Y
 
     float xTra;
     float yTra;
