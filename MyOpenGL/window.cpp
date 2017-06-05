@@ -42,10 +42,10 @@ Window::Window(QWidget *parent) :
     cam->set(CV_CAP_PROP_FRAME_HEIGHT, frameHeight);
 
     templateRect= new Rect((frameWidth-templateWidth)/2,(frameHeight-templateHeight)/2, templateWidth,templateHeight);
-    connect(ui->myGLWidget, SIGNAL(angleBrasChanged(int)), ui->sliderAngleBras, SLOT(setValue(int)));
-    //connect(ui->myGLWidget, SIGNAL(xRotationChanged(int)), ui->rotXSlider, SLOT(setValue(int)));
-    //connect(ui->myGLWidget, SIGNAL(yRotationChanged(int)), ui->rotYSlider, SLOT(setValue(int)));
-    //connect(ui->myGLWidget, SIGNAL(zRotationChanged(int)), ui->rotZSlider, SLOT(setValue(int)));
+    //Changement lié au trébuchet
+    connect(this, SIGNAL(posYChanged(int)),ui->myGLWidget, SLOT(posYChanged(int)));
+    connect(this, SIGNAL(angleBrasChanged(int)),ui->myGLWidget, SLOT(setAngleBras(int)));
+    //Timer
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
     timer->start(50);
@@ -70,6 +70,8 @@ void Window::update(){
         cvtColor(image,image,CV_BGR2RGB);
         QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
         ui->camFrame->setPixmap(QPixmap::fromImage(img));
+        //Update position treb
+        angleBrasChanged(angle);
     }
 }
 

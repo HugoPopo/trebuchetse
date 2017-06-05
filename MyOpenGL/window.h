@@ -43,12 +43,18 @@ private:
     Mat resultImage;
     Mat image;
     bool go;
-
+    int angle=0;
 private slots:
     void update();
     void on_checkBox_clicked();
     void trackingRect();
     void updateTime();
+
+signals:
+
+    //Gestion Angle Bras et position trébuchet
+    void posYChanged(int angleCatapulte);
+    void angleBrasChanged(int angle);
 };
 
 #endif // WINDOW_H
