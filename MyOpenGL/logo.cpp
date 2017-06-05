@@ -2,7 +2,7 @@
 
 Logo::Logo()
 {
-    texttse=QImage(":/texture/Image/logo.png");
+    texttse=QImage(":/texture/Image/logoTSE2.bmp");
 
 }
 
@@ -14,7 +14,8 @@ void Logo::drawLogo(float x,float y,float z){
     glPushMatrix();
 
       glTranslatef(x,y,z);
-      glScalef(2,2,0.1);
+      glRotatef(90,0,0,1);
+      glScalef(10,5,0.1);
       drawCubeTexture();
 
     glPopMatrix();

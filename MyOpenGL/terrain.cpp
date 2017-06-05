@@ -25,7 +25,15 @@ void Terrain::drawTerrain()
       drawCubeTexture();
 
     glPopMatrix();
-    logtse.drawLogo(20,20,0.5);
+    logtse.drawLogo(-300,-20,0.5);
+    logtse.drawLogo(-300,20,0.5);
+
+    glPushMatrix();
+    glScalef(3,3,1);
+    logtse.drawLogo(10,-40,0.5);
+    logtse.drawLogo(10,40,0.5);
+
+    glPopMatrix();
     fil.drawFilet();
 
 }
