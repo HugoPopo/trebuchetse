@@ -19,6 +19,30 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="temps_total_label">
+           <property name="text">
+            <string>Temps total :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="total_label">
+           <property name="text">
+            <string>00:00:00</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
           <widget class="QLabel" name="temps_label">
@@ -31,6 +55,9 @@
           <widget class="QLabel" name="chrono_label">
            <property name="text">
             <string>00:00:00</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -208,12 +235,28 @@
    <slot>updateTime()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>136</x>
-     <y>66</y>
+     <x>161</x>
+     <y>174</y>
     </hint>
     <hint type="destinationlabel">
      <x>235</x>
      <y>532</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>total_label</sender>
+   <signal>linkActivated(QString)</signal>
+   <receiver>Window</receiver>
+   <slot>updateTime()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>127</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>316</x>
+     <y>808</y>
     </hint>
    </hints>
   </connection>

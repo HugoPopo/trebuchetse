@@ -145,12 +145,10 @@ void Window::keyPressEvent(QKeyEvent *e)
 
 void Window::updateTime()
 {
-    //QTime time = QTime::currentTime();
-    //QString text = time.toString("hh:mm:ss");
-
     *timeManche = timeManche->addSecs(1);
-    qDebug()<<timeManche->toString("hh:mm:ss");
-    //timeTotal->addSecs(1);
-    QString text = timeManche->toString("hh:mm:ss");
-    ui->chrono_label->setText(text);
+    *timeTotal = timeTotal->addSecs(1);
+    QString textManche = timeManche->toString("hh:mm:ss");
+    QString textTotal = timeTotal->toString("hh:mm:ss");
+    ui->chrono_label->setText(textManche);
+    ui->total_label->setText(textTotal);
 }
