@@ -18,7 +18,7 @@ Window::Window(QWidget *parent) :
     cam=new VideoCapture(0);
     //Chargement des highscore
     loadHighScore();
-
+    //Besoin d'avoir un .ini
     if(!cam->isOpened())  // On regarde si tout est ok avec la camera
     {
         qDebug()<<":/";
@@ -292,7 +292,7 @@ void Window::displayHighScore(){
     }
 void Window::setScore(int scor){
     //Notre cible est formée de 10 anneaux est son rayon est de 50
-    if(countGame < 10){
+    if(countTarget < 10){
         if(scor<5){
             score=score+10;
         }else if (scor<10){
