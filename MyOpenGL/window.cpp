@@ -289,3 +289,33 @@ void Window::displayHighScore(){
         break;
           }
     }
+void Window::setScore(int scor){
+    //Notre cible est formée de 10 anneaux est son rayon est de 50
+    if(countGame < 10){
+        if(scor<5){
+            score=score+10;
+        }else if (scor<10){
+            score=score+9;
+        }else if (scor<15){
+            score=score+8;
+        }else if (scor<20){
+            score=score+7;
+        }else if (scor<25){
+            score=score+6;
+        }else if (scor<30){
+            score=score+5;
+        }else if (scor<35){
+            score=score+4;
+        }else if (scor<40){
+            score=score+3;
+        }else if (scor<45){
+            score=score+2;
+        }else if (scor<50){
+            score=score+1;
+        }else{
+            score=score+0;
+        }
+        ui->labelScore->setText(QString::number(score));
+        //On actualise le score
+    }
+}

@@ -83,11 +83,14 @@ private:
     void loadHighScore();
     void displayHighScore();
 private slots:
+    //Actualisation de la fenetre
     void update();
+    //Pour la calibration de la main
     void on_checkBox_clicked();
-
+    //Permet d'actualiser les chronos
     void updateTime();
-
+    //Methode permettant de calculer le score
+    void setScore(int scor);
 
 signals:
 
