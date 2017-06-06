@@ -150,3 +150,30 @@ void Window::updateTime()
     ui->chrono_label->setText(textManche);
     ui->total_label->setText(textTotal);
 }
+
+void Window::on_tirer_button_clicked()
+{
+    partieDialog x;
+    x.setModal(true);
+    int result = x.exec();
+    if (result == 1){
+        level=x.getDifficulty();
+        emit changeLevel(level);
+        ui->myGLWidget->newTarget();
+        nomJoueur = x.getName();
+        countGame = 0;
+        ui->labelCibleJ->setText("0");
+        ui->labelCibleR->setText("10");
+         ui->labelScore->setText("0");
+        switch(level){
+        case 1: ui->labelLevel->setText("Facile");
+        break;
+         case 2: ui->labelLevel->setText("Moyen");
+        break;
+         case 3: ui->labelLevel->setText("Difficile");
+        break;
+        }
+        timeRef = (QTime::currentTime().toString("hh:mm:ss"));
+        chronoTotal->start(1000);
+    }
+}

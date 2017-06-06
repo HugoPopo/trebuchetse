@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     bras.cpp \
     line.cpp \
     logo.cpp \
-    filet.cpp
+    filet.cpp \
+    partiedialog.cpp
 
 HEADERS  += window.h \
     myglwidget.h \
@@ -35,9 +36,11 @@ HEADERS  += window.h \
     bras.h \
     line.h \
     logo.h \
-    filet.h
+    filet.h \
+    partiedialog.h
 
-FORMS    += window.ui
+FORMS    += window.ui \
+    partiedialog.ui
 
 INCLUDEPATH +=$$(OPENCV_DIR)\..\..\include
 
