@@ -56,7 +56,8 @@ Window::Window(QWidget *parent) :
     connect(this, SIGNAL(pointChanged(float,float,float)),ui->myGLWidget, SLOT(setPoint(float,float,float)));
     //Timer
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-
+    //Pour la cible
+    connect(this, SIGNAL(levelChanged(int)),ui->myGLWidget, SLOT(setLevel(int)));
     timer->start(10);
 
 
@@ -73,7 +74,7 @@ void Window::newGame()
     part.exec();
 
         level=part.getDifficulty();
-        connect(this, SIGNAL(levelChanged(int)),ui->myGLWidget, SLOT(setLevel(int)));
+
         emit levelChanged(level);
         //Changer le niveau ui->myGLWidget->newTarget();
         nomJoueur = part.getName();
@@ -89,6 +90,28 @@ void Window::newGame()
         }
         //Ajoute le start du chrono
     }
+
+void Window::finPartie(){
+    if (countTarget==9)
+    {
+        //Fin de la partie
+        ui->labelCibleR->setText("Fin partie !");
+
+        tempsfin=timeTotal->toString();
+        //displayHighScore();
+        //saveHighScore();
+
+    }else{
+        //On continue :'=)
+        //Relancer Le chrono cible
+        countTarget++;
+        timeManche->setHMS(0,0,0,0);
+        emit levelChanged(level);
+        QString nb= QString::number(10-countTarget);
+        ui->labelCibleR->setText(nb);
+
+    }
+}
 void Window::update(){
 
 

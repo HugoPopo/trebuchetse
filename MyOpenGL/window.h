@@ -26,8 +26,12 @@ class Window : public QWidget
 public:
     explicit Window(QWidget *parent = 0);
     ~Window();
-    void newGame();
+
     //Méthode qui gere la création d'une nouvelle partie
+    void newGame();
+
+    //Calcule du score en fin de partie
+    void finPartie();
 protected:
     void keyPressEvent(QKeyEvent *event);
 
@@ -62,11 +66,13 @@ private:
     //Le choix du niveau
     int score = 0;
     //Le score
-    QString nomJoueur;
     //Le nom du joueur pour les highscores
-    int i;
+    QString nomJoueur;
+
     //animation corde
     float pointf2,pointf3, pointf4;
+    //Temps en fin de partie pour highsc
+    QString tempsfin;
 private slots:
     void update();
     void on_checkBox_clicked();

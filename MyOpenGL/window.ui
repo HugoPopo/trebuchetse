@@ -88,6 +88,24 @@
         </layout>
        </item>
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Cible Restante</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelCibleR">
+           <property name="text">
+            <string>10</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_10">
          <item>
           <widget class="QLabel" name="score_label">
@@ -121,7 +139,38 @@
       </layout>
      </item>
      <item>
-      <widget class="QTableView" name="tableView"/>
+      <widget class="QTableWidget" name="tableWidget">
+       <row>
+        <property name="text">
+         <string>Nouvelle ligne</string>
+        </property>
+       </row>
+       <row>
+        <property name="text">
+         <string>Nom Joueur</string>
+        </property>
+       </row>
+       <row>
+        <property name="text">
+         <string>Temps</string>
+        </property>
+       </row>
+       <column>
+        <property name="text">
+         <string>Facile</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Moyen</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Difficile</string>
+        </property>
+       </column>
+      </widget>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -155,6 +204,8 @@
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
+         <zorder>camFrame</zorder>
+         <zorder>tableWidget</zorder>
         </widget>
        </item>
       </layout>
