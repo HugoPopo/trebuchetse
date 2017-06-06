@@ -9,6 +9,8 @@
 
 #include "opencv2/highgui.hpp"
 #include<QLabel>
+#include<QSettings>
+#include<QDir>
 #include"partiedialog.h"
 using namespace cv;
 
@@ -73,6 +75,13 @@ private:
     float pointf2,pointf3, pointf4;
     //Temps en fin de partie pour highsc
     QString tempsfin;
+
+    //Gestion du tableau des scores
+    QSettings *config= new QSettings(QDir::currentPath() +"/config.ini",QSettings::IniFormat);
+    void resetHighScore();
+    void saveHighScore();
+    void loadHighScore();
+    void displayHighScore();
 private slots:
     void update();
     void on_checkBox_clicked();

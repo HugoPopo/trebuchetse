@@ -16,7 +16,8 @@ Window::Window(QWidget *parent) :
     ui->setupUi(this);
 	//Camera
     cam=new VideoCapture(0);
-	
+    //Chargement des highscore
+    loadHighScore();
 
     if(!cam->isOpened())  // On regarde si tout est ok avec la camera
     {
@@ -60,7 +61,24 @@ Window::Window(QWidget *parent) :
     connect(this, SIGNAL(levelChanged(int)),ui->myGLWidget, SLOT(setLevel(int)));
     timer->start(10);
 
+    //Test Qsettings
+    //Ceci permet sauvegarder un fichier ini
+    /*
+    config->setValue("ScoreFacile/Nom", ui->highscoreTable->item(0,0)->text());
+    config->setValue("ScoreFacile/Score", ui->highscoreTable->item(1,0)->text());
+    config->setValue("ScoreFacile/Temps", ui->highscoreTable->item(2,0)->text());
 
+    config->setValue("ScoreMoyen/Nom", ui->highscoreTable->item(0,1)->text());
+    config->setValue("ScoreMoyen/Score", ui->highscoreTable->item(1,1)->text());
+    config->setValue("ScoreMoyen/Temps", ui->highscoreTable->item(1,1)->text());
+
+    config->setValue("ScoreDifficile/Nom", ui->highscoreTable->item(0,2)->text());
+    config->setValue("ScoreDifficile/Score", ui->highscoreTable->item(1,2)->text());
+    config->setValue("ScoreDifficile/Temps", ui->highscoreTable->item(2,2)->text());
+
+    config->sync();
+    */
+    //
     play =false;
     newGame();
     updateTime();
@@ -89,6 +107,9 @@ void Window::newGame()
         break;
         }
         //Ajoute le start du chrono
+        //Si on a une fonction de relance a la fin de partie
+        timeManche->setHMS(0,0,0,0);
+        timeTotal->setHMS(0,0,0,0);
     }
 
 void Window::finPartie(){
@@ -98,8 +119,8 @@ void Window::finPartie(){
         ui->labelCibleR->setText("Fin partie !");
 
         tempsfin=timeTotal->toString();
-        //displayHighScore();
-        //saveHighScore();
+        displayHighScore();
+        saveHighScore();
 
     }else{
         //On continue :'=)
@@ -193,3 +214,78 @@ void Window::updateTime()
     ui->chrono_label->setText(textManche);
     ui->total_label->setText(textTotal);
 }
+
+void Window::loadHighScore(){
+
+    //Facile
+    ui->highscoreTable->setItem(0,0,new QTableWidgetItem(config->value("ScoreFacile/Nom").toString()));
+    ui->highscoreTable->setItem(1,0,new QTableWidgetItem(config->value("ScoreFacile/Score").toString()));
+    ui->highscoreTable->setItem(2,0,new QTableWidgetItem(config->value("ScoreFacile/Chrono").toString()));
+
+    //Moyen
+    ui->highscoreTable->setItem(0,1,new QTableWidgetItem(config->value("ScoreMoyen/Nom").toString()));
+    ui->highscoreTable->setItem(1,1,new QTableWidgetItem(config->value("ScoreMoyen/Score").toString()));
+    ui->highscoreTable->setItem(2,1,new QTableWidgetItem(config->value("ScoreMoyen/Chrono").toString()));
+
+    //Difficile
+    ui->highscoreTable->setItem(0,2,new QTableWidgetItem(config->value("ScoreDifficile/Nom").toString()));
+    ui->highscoreTable->setItem(1,2,new QTableWidgetItem(config->value("ScoreDifficile/Score").toString()));
+    ui->highscoreTable->setItem(2,2,new QTableWidgetItem(config->value("ScoreDifficile/Chrono").toString()));
+}
+
+void Window::saveHighScore(){
+    //Facile
+    config->setValue("ScoreFacile/Nom", ui->highscoreTable->item(0,0)->text());
+    config->setValue("ScoreFacile/Score", ui->highscoreTable->item(1,0)->text());
+    config->setValue("ScoreFacile/Temps", ui->highscoreTable->item(2,0)->text());
+    //Moyen
+    config->setValue("ScoreMoyen/Nom", ui->highscoreTable->item(0,1)->text());
+    config->setValue("ScoreMoyen/Score", ui->highscoreTable->item(1,1)->text());
+    config->setValue("ScoreMoyen/Temps", ui->highscoreTable->item(1,1)->text());
+    //Difficile
+    config->setValue("ScoreDifficile/Nom", ui->highscoreTable->item(0,2)->text());
+    config->setValue("ScoreDifficile/Score", ui->highscoreTable->item(1,2)->text());
+    config->setValue("ScoreDifficile/Temps", ui->highscoreTable->item(2,2)->text());
+}
+
+void Window::resetHighScore(){
+    config->clear();
+}
+
+void Window::displayHighScore(){
+    switch(level){
+    case 1 :
+    {
+        int scoreF = ui->highscoreTable->item(1,0)->text().toInt();
+        if (score>scoreF){
+            ui->highscoreTable->setItem(0,0,new QTableWidgetItem(nomJoueur));
+            ui->highscoreTable->setItem(1,0,new QTableWidgetItem(QString::number(score)));
+            ui->highscoreTable->setItem(2,0,new QTableWidgetItem(timeTotal->toString()));
+        }
+
+     break;
+    }
+    case 2 :
+    {
+    int scoreI = ui->highscoreTable->item(1,1)->text().toInt();
+    if (score>scoreI){
+        ui->highscoreTable->setItem(0,1,new QTableWidgetItem(nomJoueur));
+        ui->highscoreTable->setItem(1,1,new QTableWidgetItem(QString::number(score)));
+        ui->highscoreTable->setItem(2,1,new QTableWidgetItem(timeTotal->toString()));
+    }
+
+    break;}
+    case 3 :
+    {
+        int scoreD = ui->highscoreTable->item(1,2)->text().toInt();
+        if (score>scoreD){
+            ui->highscoreTable->setItem(0,2,new QTableWidgetItem(nomJoueur));
+            ui->highscoreTable->setItem(1,2,new QTableWidgetItem(QString::number(score)));
+            ui->highscoreTable->setItem(2,2,new QTableWidgetItem(timeTotal->toString()));
+        }
+
+    break;}
+    default:
+        break;
+          }
+    }

@@ -139,15 +139,15 @@
       </layout>
      </item>
      <item>
-      <widget class="QTableWidget" name="tableWidget">
+      <widget class="QTableWidget" name="highscoreTable">
        <row>
         <property name="text">
-         <string>Nouvelle ligne</string>
+         <string>Nom</string>
         </property>
        </row>
        <row>
         <property name="text">
-         <string>Nom Joueur</string>
+         <string>Score</string>
         </property>
        </row>
        <row>
