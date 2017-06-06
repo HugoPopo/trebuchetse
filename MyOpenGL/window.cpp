@@ -73,8 +73,8 @@ void Window::newGame()
     part.exec();
 
         level=part.getDifficulty();
-        //connect(this, SIGNAL(changeLevel(int)),ui->myGLWidget, SLOT(setLevel(int)));
-        //emit changeLevel(level);
+        connect(this, SIGNAL(levelChanged(int)),ui->myGLWidget, SLOT(setLevel(int)));
+        emit levelChanged(level);
         //Changer le niveau ui->myGLWidget->newTarget();
         nomJoueur = part.getName();
         countTarget = 0;

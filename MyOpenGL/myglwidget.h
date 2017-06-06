@@ -54,7 +54,8 @@ public slots:
     void setPoint(float pointf2,float pointf3,float pointf4);
     //Lancer de la boule
     void tirer();
-
+    //Changer le niveau
+    void setLevel(int level);
 signals:
     // signaling rotation from mouse movement
     void xTranslationChanged(float dist);
@@ -69,6 +70,8 @@ signals:
     void angleBrasChanged(int angle);
     //Gestion Ligne
     void pointChanged(float pointf2,float pointf3,float pointf4);
+    //Gestion niveau
+    void changedLevel(int level);
 private:
     void draw();
     //Objet à dessiner
@@ -87,7 +90,7 @@ private:
     //Données nécessaire pour le jeu
 
     void calcTraf();    //Fonction qui va nous permettre de calculer la trajectoire de la balle
-    int level; //Niveau de difficulté (3 niveaux de difficulté, facile, moyen difficile)
+    int levelTarg; //Niveau de difficulté (3 niveaux de difficulté, facile, moyen difficile)
     bool visibleImpact;
     float calcScore; //Fonction qui va nous permettre de calculer le score, calcule de la distance entre l'impact et la cible
     float impX; //Coordonnées de l'impact

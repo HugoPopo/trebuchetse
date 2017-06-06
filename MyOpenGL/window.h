@@ -83,6 +83,8 @@ signals:
     void pointChanged(float pointf2,float pointf3,float pointf4);
     //Fermer le dialog
     void closeDialog();
+    //Changement de niveau
+    void levelChanged(int level);
 };
 
 #endif // WINDOW_H

@@ -244,6 +244,11 @@ void MyGLWidget::setPoint(float pointf2, float pointf3, float pointf4)
         emit pointChanged(pointf2,pointf3,pointf4);
         updateGL();
     }
+void MyGLWidget::setLevel(int level){
+    levelTarg=level;
+    targ.lvlTarget(level);
+    emit changedLevel(level);
+}
 
 void MyGLWidget::draw()
 {
