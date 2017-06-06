@@ -17,9 +17,6 @@ class MyGLWidget : public QGLWidget
 public:
     explicit MyGLWidget(QWidget *parent = 0);
     ~MyGLWidget();
-signals:
-
-public slots:
 
 protected:
     //Permet d'initialiser certains paramètre lié a openGL ex:Texture
@@ -55,6 +52,9 @@ public slots:
     void setAngleTreb(int angle);
     //Gestion de l'animation du fil
     void setPoint(float pointf2,float pointf3,float pointf4);
+    //Lancer de la boule
+    void tirer();
+
 signals:
     // signaling rotation from mouse movement
     void xTranslationChanged(float dist);

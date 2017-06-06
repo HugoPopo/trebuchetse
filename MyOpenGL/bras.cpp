@@ -65,10 +65,10 @@ void Bras::drawBras(float pointf2,float pointf3,float pointf4){
                 fil.setpointf3(pointf3);
                 fil.setpointf4(pointf4);
                 fil.drawLine(fil.getpointf2(),fil.getpointf3(),fil.getpointf4());
-            glPopMatrix();//PP
-            glPushMatrix();//P
+            //glPopMatrix();//PP
+            //glPushMatrix();//P
                 //Boulet
-                glTranslatef(9.5,0,0);
+                glTranslatef(1.5,0,0);
                 boulet.drawBoulet();
             glPopMatrix();//PP
         glPopMatrix();//PP
