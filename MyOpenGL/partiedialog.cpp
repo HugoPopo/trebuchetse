@@ -25,18 +25,23 @@ int partieDialog::getDifficulty()
     return level;
 }
 
-
-void partieDialog::on_radioButtonF_clicked()
+void partieDialog::on_radioButtonFacile_clicked()
 {
     level=1;
 }
 
-void partieDialog::on_radioButtonI_clicked()
+void partieDialog::on_radioButtonMoyen_clicked()
 {
     level=2;
 }
 
-void partieDialog::on_radioButtonD_clicked()
+
+void partieDialog::on_radioButtonDifficile_clicked()
 {
     level=3;
+}
+
+void partieDialog::on_closepushButton_clicked()
+{
+    close();
 }

@@ -3,7 +3,7 @@
 
 #include<QString>
 #include <QDialog>
-
+//La classe partieDialog permet de modifier les infos du joueur et de choisir le niveau
 namespace Ui {
 class partieDialog;
 }
@@ -20,12 +20,13 @@ public:
 
 private slots:
 
-    void on_radioButtonF_clicked();
+    void on_radioButtonFacile_clicked();
 
-    void on_radioButtonI_clicked();
+    void on_radioButtonMoyen_clicked();
 
-    void on_radioButtonD_clicked();
+    void on_radioButtonDifficile_clicked();
 
+    void on_closepushButton_clicked();
 private:
     Ui::partieDialog *ui;
     int level;

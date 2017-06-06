@@ -13,22 +13,6 @@
   <property name="windowTitle">
    <string>Nouvelle Partie</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>90</y>
-     <width>341</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -65,7 +49,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButtonF">
+  <widget class="QRadioButton" name="radioButtonFacile">
    <property name="geometry">
     <rect>
      <x>140</x>
@@ -78,7 +62,7 @@
     <string>Facile</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButtonI">
+  <widget class="QRadioButton" name="radioButtonMoyen">
    <property name="geometry">
     <rect>
      <x>220</x>
@@ -91,7 +75,7 @@
     <string>Moyen</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButtonD">
+  <widget class="QRadioButton" name="radioButtonDifficile">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -104,40 +88,33 @@
     <string>Difficile</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Une partie comporte 10 cibles</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="closepushButton">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>90</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Valider</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>gameDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>gameDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

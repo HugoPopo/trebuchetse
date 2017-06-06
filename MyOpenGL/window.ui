@@ -76,9 +76,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="niveau">
+          <widget class="QLabel" name="labelLevel">
            <property name="text">
-            <string>0</string>
+            <string/>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -100,7 +100,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="score">
+          <widget class="QLabel" name="labelScore">
            <property name="text">
             <string>0000</string>
            </property>
@@ -153,54 +153,6 @@
           </property>
          </widget>
         </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="inclinaison_label">
-           <property name="text">
-            <string>Inclinaison</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="sliderAngleBras">
-           <property name="minimum">
-            <number>-135</number>
-           </property>
-           <property name="maximum">
-            <number>45</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="tickPosition">
-            <enum>QSlider::TicksBelow</enum>
-           </property>
-           <property name="tickInterval">
-            <number>1</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QLabel" name="rotation_label">
-           <property name="text">
-            <string>Rotation</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="horizontalSlider_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </item>
       </layout>
      </item>
@@ -270,22 +222,6 @@
   </connection>
   <connection>
    <sender>tirer_button</sender>
-   <signal>clicked()</signal>
-   <receiver>myGLWidget</receiver>
-   <slot>tirer()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>94</x>
-     <y>365</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>346</x>
-     <y>259</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>tirer_button</sender>
    <signal>clicked(bool)</signal>
    <receiver>checkBox</receiver>
    <slot>setChecked(bool)</slot>
@@ -297,6 +233,22 @@
     <hint type="destinationlabel">
      <x>80</x>
      <y>401</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tirer_button</sender>
+   <signal>clicked()</signal>
+   <receiver>myGLWidget</receiver>
+   <slot>tirer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>94</x>
+     <y>365</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>346</x>
+     <y>259</y>
     </hint>
    </hints>
   </connection>

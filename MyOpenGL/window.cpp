@@ -44,10 +44,10 @@ Window::Window(QWidget *parent) :
     timerChrono = new QTimer(this);
     connect(timerChrono, SIGNAL(timeout()), this, SLOT(updateTime()));
     timerChrono->start(1000);
-    updateTime();
-    i=0;
 
-  
+
+    //Mise a jour de l'interface
+
 
 	//Changement lié au trébuchet
     connect(this, SIGNAL(angleTrebChanged(int)),ui->myGLWidget, SLOT(setAngleTreb(int)));
@@ -61,8 +61,34 @@ Window::Window(QWidget *parent) :
 
 
     play =false;
-
+    newGame();
+    updateTime();
 }
+
+void Window::newGame()
+{
+
+    partieDialog part;
+    part.setModal(true);
+    part.exec();
+
+        level=part.getDifficulty();
+        //connect(this, SIGNAL(changeLevel(int)),ui->myGLWidget, SLOT(setLevel(int)));
+        //emit changeLevel(level);
+        //Changer le niveau ui->myGLWidget->newTarget();
+        nomJoueur = part.getName();
+        countTarget = 0;
+        ui->labelScore->setText("0");
+        switch(level){
+        case 1: ui->labelLevel->setText("Facile");
+        break;
+         case 2: ui->labelLevel->setText("Moyen");
+        break;
+         case 3: ui->labelLevel->setText("Difficile");
+        break;
+        }
+        //Ajoute le start du chrono
+    }
 void Window::update(){
 
 
@@ -104,12 +130,6 @@ void Window::update(){
             angleBrasChanged(resultRect.y);
             //Le fil
             pointChanged(resultRect.x*0.01,resultRect.y*0.01,resultRect.x*0.01);
-            i++;
-            if(i>140){
-             ui->checkBox->setChecked(false);
-             i=0;
-             play=false;
-            }
         }
     }
 }
@@ -151,29 +171,3 @@ void Window::updateTime()
     ui->total_label->setText(textTotal);
 }
 
-void Window::on_tirer_button_clicked()
-{
-    partieDialog x;
-    x.setModal(true);
-    int result = x.exec();
-    if (result == 1){
-        level=x.getDifficulty();
-        emit changeLevel(level);
-        ui->myGLWidget->newTarget();
-        nomJoueur = x.getName();
-        countGame = 0;
-        ui->labelCibleJ->setText("0");
-        ui->labelCibleR->setText("10");
-         ui->labelScore->setText("0");
-        switch(level){
-        case 1: ui->labelLevel->setText("Facile");
-        break;
-         case 2: ui->labelLevel->setText("Moyen");
-        break;
-         case 3: ui->labelLevel->setText("Difficile");
-        break;
-        }
-        timeRef = (QTime::currentTime().toString("hh:mm:ss"));
-        chronoTotal->start(1000);
-    }
-}
