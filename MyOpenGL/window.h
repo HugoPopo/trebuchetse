@@ -46,7 +46,7 @@ private:
     Mat matchImage;
     Mat resultImage;
     Mat image;
-    bool go;
+    bool play;
     int angle=0;
     int posY=0;
     int i;

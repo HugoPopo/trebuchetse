@@ -14,6 +14,28 @@ Window::Window(QWidget *parent) :
     ui(new Ui::Window)
 {
     ui->setupUi(this);
+	//Camera
+    cam=new VideoCapture(0);
+	
+
+    if(!cam->isOpened())  // On regarde si tout est ok avec la camera
+    {
+        qDebug()<<":/";
+    }
+	
+	//On redimensione la caméra
+    int frameWidth=cam->get(CV_CAP_PROP_FRAME_WIDTH);
+    int frameHeight=cam->get(CV_CAP_PROP_FRAME_HEIGHT);
+    frameWidth=frameWidth/4;
+    frameHeight=frameHeight/4;
+    cam->set(CV_CAP_PROP_FRAME_WIDTH, frameWidth);
+    cam->set(CV_CAP_PROP_FRAME_HEIGHT, frameHeight);
+
+    templateRect= new Rect((frameWidth-templateWidth)/2,-20+(frameHeight-templateHeight)/2, templateWidth,templateHeight);
+
+    //FOCUS FENETRE
+    setFocusPolicy(Qt::StrongFocus);
+	
     // chrono
     timeManche = new QTime(0,0,0);
     timeTotal = new QTime(0,0,0);
@@ -25,24 +47,9 @@ Window::Window(QWidget *parent) :
     updateTime();
     i=0;
 
-    //Camera
-    cam=new VideoCapture(0);
+  
 
-
-    if(!cam->isOpened())  // check if we succeeded
-    {
-        qDebug()<<":/";
-    }
-    //Dimension de la camera
-    int frameWidth=cam->get(CV_CAP_PROP_FRAME_WIDTH);
-    int frameHeight=cam->get(CV_CAP_PROP_FRAME_HEIGHT);
-    frameWidth=frameWidth/6;
-    frameHeight=frameHeight/6;
-    cam->set(CV_CAP_PROP_FRAME_WIDTH, frameWidth);
-    cam->set(CV_CAP_PROP_FRAME_HEIGHT, frameHeight);
-
-    templateRect= new Rect((frameWidth-templateWidth)/2,(frameHeight-templateHeight)/2, templateWidth,templateHeight);
-    //Changement lié au trébuchet
+	//Changement lié au trébuchet
     connect(this, SIGNAL(angleTrebChanged(int)),ui->myGLWidget, SLOT(setAngleTreb(int)));
     connect(this, SIGNAL(angleBrasChanged(int)),ui->myGLWidget, SLOT(setAngleBras(int)));
     //Pour la corde :'(
@@ -50,29 +57,30 @@ Window::Window(QWidget *parent) :
     //Timer
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
-    timer->start(120);
+    timer->start(10);
 
 
-    go =false;
+    play =false;
 
 }
 void Window::update(){
 
 
-
-    if(!go){
+	//Si on n'est pas en jeu
+    if(!play){
         if (cam->read(image)) {   // Capture a frame
+		   // vertical flip of the image
            flip(image,image,1);
+           
            templateImage = Mat(image, *templateRect).clone();
            rectangle(image, *templateRect, Scalar(0,0,255),2,8,0);
-           //float newsize = (ui->centralWidget->width())/5;
-           //cv::resize(image, image, Size(newsize, newsize), 0, 0, INTER_LINEAR);
-           cvtColor(image,image,CV_BGR2RGB);
+           cvtColor(image,image,CV_BGR2RGB);//On passe en RGB
            QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
            ui->camFrame->setPixmap(QPixmap::fromImage(img));
+		   //On positionne l'image sur la frame associer a la camera 
          }
     } else {
-        if (cam->read(image)) // get a new frame from camera
+        if (cam->read(image)) // Capture Frame
         {
             Rect resultRect;
             double minVal; double maxVal; Point minLoc; Point maxLoc;
@@ -87,7 +95,7 @@ void Window::update(){
             resultRect=Rect(maxLoc.x,maxLoc.y,templateWidth,templateHeight);
             rectangle(image,resultRect,Scalar( 0, 255, 0),2,8,0);
             // Display the image
-             cvtColor(image,image,CV_BGR2RGB);
+            cvtColor(image,image,CV_BGR2RGB);
             QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
             ui->camFrame->setPixmap(QPixmap::fromImage(img));
             qDebug()<<resultRect.y;
@@ -100,7 +108,7 @@ void Window::update(){
             if(i>140){
              ui->checkBox->setChecked(false);
              i=0;
-             go=false;
+             play=false;
             }
         }
     }
@@ -109,6 +117,7 @@ void Window::update(){
 Window::~Window()
 {
     delete ui;
+	delete cam;
 }
 
 void Window::on_checkBox_clicked()
@@ -121,7 +130,7 @@ void Window::on_checkBox_clicked()
         resultImage.create( result_cols, result_rows, CV_32FC1 );
         matchImage=templateImage;
 
-        go=true;
+        play=true;
     }
 }
 
