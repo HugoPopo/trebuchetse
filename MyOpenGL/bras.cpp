@@ -46,7 +46,7 @@ void Bras::drawBras(float pointf2,float pointf3,float pointf4){
 
     glPushMatrix();//P
         glRotatef(inclinaison,0,1,0);
-        glTranslatef(1.25,0.25,2.75);
+        //glTranslatef(1.25,0.25,2.75);
         glPushMatrix();//P
             glTranslatef(1,0,0);
             glPushMatrix();//P
@@ -54,8 +54,8 @@ void Bras::drawBras(float pointf2,float pointf3,float pointf4){
                 poutre();
             glPopMatrix();//PP
             glPushMatrix();
-                        glTranslatef(-6,0,0);
-                        glRotatef(inclinaison,0,-1,0);
+                        glTranslatef(-4.2,0,1);
+                        //glRotatef(inclinaison,0,-1,0);
                         drawContrepoid();
                     glPopMatrix();
             glPushMatrix();//P
