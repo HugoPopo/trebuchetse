@@ -170,4 +170,3 @@ void Window::updateTime()
     ui->chrono_label->setText(textManche);
     ui->total_label->setText(textTotal);
 }
-

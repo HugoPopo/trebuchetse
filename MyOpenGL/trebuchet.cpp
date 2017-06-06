@@ -34,6 +34,7 @@ void Trebuchet::poutreSol()
         glPushMatrix();
             glTranslatef(0, 0, 0.125);
             glScalef (3,0.125, 0.125);
+            drawCubeTexture();
         glPopMatrix();
 }
 
@@ -128,13 +129,14 @@ glPopMatrix();
 glPushMatrix();
     glTranslatef(1.25,0.25,2.75);
     fulcrum();
+    // Placement du bras
+    bras.setInclinaison(angle+angleBras);
+    if(etat==1 || etat==2)
+        angleBras -= 5;
+    qDebug()<<"angle: "<<angleBras+angle;
+    bras.drawBras(pointf2,pointf3,pointf4);
 glPopMatrix();
-// Placement du bras
-bras.setInclinaison(angle+angleBras);
-if(etat==1 || etat==2)
-    angleBras += 2;
-qDebug()<<"angle: "<<angleBras+angle;
-bras.drawBras(pointf2,pointf3,pointf4);
+
 
 }
 

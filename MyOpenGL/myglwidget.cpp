@@ -16,11 +16,11 @@ MyGLWidget::MyGLWidget(QWidget *parent)
     yTra = 0;
     zTra = -10;
 
-    xRot = -60*16;
+    xRot = -20*16;
 
     yRot = 0;
     zRot = 90*16;
-    zoom = 0.008;
+    zoom = 0.01;
     //Init
     setAngleBras(45);
     angleTreb = 45;
@@ -250,7 +250,8 @@ void MyGLWidget::draw()
 
     glColor3f(1,1,1);
     glPushMatrix();
-        glTranslatef(-330,0,1);
+        //glTranslatef(-330,0,1);
+        glTranslatef(0,0,2);
         glScalef(4,4,4);
         glRotatef(100+angleTreb,0,0,1);
         treb.drawTrebuchet(angleBras,point2,point3,point4);
