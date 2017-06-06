@@ -6,19 +6,18 @@
 #include <QOpenGLTexture>
 #include <GL/glu.h>
 #include <QDebug>
-#include "ui_window.h"
 //Methode de la classe Trebuchet :
 //Permettant de dessiner et de gérer le déplacement du trébuchet
 
 Trebuchet::Trebuchet()
 {
+
     angleCatapulte = 0;
     angleBras = 0;
     textbois=QImage(":/texture/Image/bois.jpg");
     pointf2 = 0;
     pointf3 = 0;
     pointf4 = 0;
-    etat = 0;
 }
 
 
@@ -129,17 +128,8 @@ glPushMatrix();
     glTranslatef(1.25,0.25,2.75);
     fulcrum();
 glPopMatrix();
-// Placement du bras
-bras.setInclinaison(angle+angleBras);
-if(etat==1 || etat==2)
-    angleBras += 2;
-qDebug()<<"angle: "<<angleBras+angle;
+bras.setInclinaison(angle);
+
 bras.drawBras(pointf2,pointf3,pointf4);
 
-}
-
-void Trebuchet::tirer()
-{
-    etat = 1;
-    qDebug()<<"feu trebuchet";
 }
