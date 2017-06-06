@@ -30,6 +30,6 @@ void Boulet::drawBoulet()
     glColor3f(127,127,127);
     gluQuadricTexture(sphere,GL_TRUE);
     glPushMatrix();
-        gluSphere(sphere, 1, 32,32);
+        gluSphere(sphere, 0.25, 32,32);
     glPopMatrix();
 }

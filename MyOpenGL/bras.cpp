@@ -48,7 +48,7 @@ void Bras::drawBras(float pointf2,float pointf3,float pointf4){
         glRotatef(inclinaison,0,1,0);
         //glTranslatef(1.25,0.25,2.75);
         glPushMatrix();//P
-            glTranslatef(1,0,0);
+            glTranslatef(2,0,0);
             glPushMatrix();//P
                 glScalef(1.5,1,1);
                 poutre();
@@ -59,12 +59,15 @@ void Bras::drawBras(float pointf2,float pointf3,float pointf4){
                         drawContrepoid();
                     glPopMatrix();
             glPushMatrix();//P
-                glTranslatef(8,0,0);
+                glTranslatef(4,0,0);
+                glRotatef(150,0,1,0);
+                glTranslatef(4,0,0);
+                //drawCubeTexture();
                 //Line
                 fil.setpointf2(pointf2);
                 fil.setpointf3(pointf3);
                 fil.setpointf4(pointf4);
-                fil.drawLine(fil.getpointf2(),fil.getpointf3(),fil.getpointf4());
+                fil.drawLine(pointf2,pointf3,pointf4);
             //glPopMatrix();//PP
             //glPushMatrix();//P
                 //Boulet
