@@ -32,6 +32,7 @@ MyGLWidget::MyGLWidget(QWidget *parent)
 
 MyGLWidget::~MyGLWidget()
 {
+
 }
 
 QSize MyGLWidget::minimumSizeHint() const
@@ -261,6 +262,13 @@ void MyGLWidget::draw()
     glPushMatrix();
         targ.drawTarget();
     glPopMatrix();
+    update();
 
+}
+
+void MyGLWidget::tirer()
+{
+    treb.tirer();
+    qDebug()<<"feu !";
 }
 

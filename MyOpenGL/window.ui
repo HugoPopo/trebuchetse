@@ -111,6 +111,13 @@
          </item>
         </layout>
        </item>
+       <item>
+        <widget class="QPushButton" name="tirer_button">
+         <property name="text">
+          <string>Tirer</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -223,6 +230,7 @@
     <slot>setAngleCatapulte(int)</slot>
     <slot>setAngleBras(int)</slot>
     <slot>launchBall()</slot>
+    <slot>tirer()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -260,8 +268,41 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>tirer_button</sender>
+   <signal>clicked()</signal>
+   <receiver>myGLWidget</receiver>
+   <slot>tirer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>94</x>
+     <y>365</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>346</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tirer_button</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>checkBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>73</x>
+     <y>373</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>80</x>
+     <y>401</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>updateTime()</slot>
+  <slot>tirer()</slot>
  </slots>
 </ui>
