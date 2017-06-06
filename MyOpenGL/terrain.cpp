@@ -35,5 +35,5 @@ void Terrain::drawTerrain()
 
     glPopMatrix();
     fil.drawFilet();
-
+    delete text1;
 }
