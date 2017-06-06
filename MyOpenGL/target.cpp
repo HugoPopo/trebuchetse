@@ -51,7 +51,7 @@ void Target::lvlTarget(int level){
         xTarget = ((rand()%200) + 150);
         break;
     }
-    yTarget = (rand() % 350)-175;
+    yTarget = (rand() % 250)-175;
 
 }
 
