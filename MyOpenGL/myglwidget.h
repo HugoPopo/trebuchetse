@@ -72,6 +72,8 @@ signals:
     void pointChanged(float pointf2,float pointf3,float pointf4);
     //Gestion niveau
     void changedLevel(int level);
+    //Pour l'actualisation du score cette méthode prend en paramètre la distance d'impact
+    void changedScore(int dist);
 private:
     void draw();
     //Objet à dessiner
@@ -92,7 +94,7 @@ private:
     void calcTraf();    //Fonction qui va nous permettre de calculer la trajectoire de la balle
     int levelTarg; //Niveau de difficulté (3 niveaux de difficulté, facile, moyen difficile)
     bool visibleImpact;
-    float calcScore; //Fonction qui va nous permettre de calculer le score, calcule de la distance entre l'impact et la cible
+
     float impX; //Coordonnées de l'impact
     float impY;
 
@@ -105,6 +107,8 @@ private:
     QPoint lastPos;
     //Points liés à l'animation de la corde
     float point2,point3, point4;
+    //Pour le calcul du score (Distance entre le centre de la cible et l'impact du boulet)
+    float distimpact;
 };
 
 #endif // MYGLWIDGET_H

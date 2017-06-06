@@ -78,6 +78,25 @@ private:
 
     //Gestion du tableau des scores
     QSettings *config= new QSettings(QDir::currentPath() +"/config.ini",QSettings::IniFormat);
+    //Format de config.ini (copier coller dans le build pour avoir un tableau des scores pré-remplie
+    /*
+    [ScoreFacile]
+    Nom=Bertrand
+    Score=0
+    Temps=
+
+    [ScoreMoyen]
+    Nom=Panda Roux
+    Score=444
+    Temps=0
+
+    [ScoreDifficile]
+    Nom=Moulin
+    Score=0
+    Temps=0
+    */
+
+    //Différente methode qui permettent l'affichage des scores
     void resetHighScore();
     void saveHighScore();
     void loadHighScore();

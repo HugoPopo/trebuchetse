@@ -60,7 +60,8 @@ Window::Window(QWidget *parent) :
     //Pour la cible
     connect(this, SIGNAL(levelChanged(int)),ui->myGLWidget, SLOT(setLevel(int)));
     timer->start(10);
-
+    //Pour l'actualisation du score
+    connect(ui->myGLWidget, SIGNAL(changeScore(int)),this, SLOT(setScore(int)));
     //Test Qsettings
     //Ceci permet sauvegarder un fichier ini
     /*
