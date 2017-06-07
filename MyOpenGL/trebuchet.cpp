@@ -19,6 +19,9 @@ Trebuchet::Trebuchet()
     pointf3 = 0;
     pointf4 = 0;
     etat = 0;
+    timeLancer = 0;
+    timerLancer = new QTimer(this);
+    QObject::connect(timerLancer, SIGNAL(timeout()), this, SLOT(updateTimeLancer()));
 }
 
 
@@ -131,12 +134,28 @@ glPushMatrix();
     fulcrum();
     // Placement du bras
     bras.setInclinaison(angle+angleBras);
-    if(etat==1 || etat==2)
+    if(etat==1 || etat==2){
         angleBras -= 5;
-    qDebug()<<"angle: "<<angleBras+angle;
+        qDebug()<<"angle: "<<angleBras+angle;
+        if(angleBras <= -100){
+            etat = 3;
+            xLache = boulet.getX();
+            zLache = boulet.getZ();
+            qDebug()<<"etat 3";
+            timerLancer->start(100);
+            qDebug()<<"debut chrono";
+        }
+    }
+    if(etat == 3){
+        boulet.setX( boulet.getVitesseInitiale() + boulet.getX() );
+        double sinus = (boulet.getZ() - zLache)/sqrt( pow((boulet.getZ()- zLache),2) + pow((boulet.getX()-xLache),2));
+        boulet.setZ( -(9.8/2 *timeLancer*timeLancer) + boulet.getVitesseInitiale() * sinus * timeLancer + zLache );
+        qDebug()<<"time lancer: "<<timeLancer;
+        boulet.drawBoulet();
+        qDebug()<<"boulet: "<<boulet.getX()<<" "<<boulet.getY()<<" "<<boulet.getZ();
+    }
     bras.drawBras(pointf2,pointf3,pointf4);
 glPopMatrix();
-
 
 }
 
@@ -144,4 +163,9 @@ void Trebuchet::tirer()
 {
     etat = 1;
     qDebug()<<"feu trebuchet";
+}
+
+void Trebuchet::updateTimeLancer()
+{
+    timeLancer += 0.1;
 }

@@ -20,7 +20,7 @@ void Line::drawLine(float pointf2,float pointf3,float pointf4){
     glBegin(GL_LINE_STRIP);
 
       glVertex2f(-4.00, 0.00);//Première Ligne
-      glVertex2f(-3.00, pointf2);//Seconde
+      glVertex2f(-3.00, pointf2);//Second
       glVertex2f(-2.00, pointf3);//Third
       glVertex2f(-1.00, pointf4);//Fourth
       glVertex2f(0.0, 0.00);

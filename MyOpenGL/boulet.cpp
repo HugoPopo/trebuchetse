@@ -16,6 +16,10 @@ static const double Z0 = 1;
 Boulet::Boulet()
 {
     textrock=QImage(":/texture/Image/rock.JPG");
+    x=0;
+    y=0;
+    z=-5;
+    vitesseInitiale = 0.1;
 }
 
 
@@ -30,6 +34,7 @@ void Boulet::drawBoulet()
     glColor3f(127,127,127);
     gluQuadricTexture(sphere,GL_TRUE);
     glPushMatrix();
+        glTranslated(x,y,z);
         gluSphere(sphere, 0.25, 32,32);
     glPopMatrix();
 }
