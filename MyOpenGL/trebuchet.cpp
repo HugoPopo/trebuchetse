@@ -20,6 +20,7 @@ Trebuchet::Trebuchet()
     pointf4 = 0;
     etat = 0;
     timeLancer = 0;
+    impact = false;
 }
 
 
@@ -139,6 +140,7 @@ glPushMatrix();
             etat = 3;
             xLache = boulet.getX();
             zLache = boulet.getZ();
+            boulet.setVitesseInitiale(angleBras/13);
             qDebug()<<"etat 3";
             qDebug()<<"debut chrono";
         }

@@ -252,7 +252,11 @@ void MyGLWidget::setLevel(int level){
 
 void MyGLWidget::draw()
 {
-
+    if(treb.getImpact())
+    {
+        calcDistance();
+        qDebug()<<"calcDist";
+    }
     glColor3f(1,1,1);
     glPushMatrix();
         glTranslatef(-330,0,1);
