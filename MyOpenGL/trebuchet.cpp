@@ -10,7 +10,7 @@
 //Methode de la classe Trebuchet :
 //Permettant de dessiner et de gérer le déplacement du trébuchet
 
-Trebuchet::Trebuchet()
+Trebuchet::Trebuchet(MyGLWidget *mygl)
 {
     angleCatapulte = 0;
     angleBras = 0;
@@ -20,8 +20,6 @@ Trebuchet::Trebuchet()
     pointf4 = 0;
     etat = 0;
     timeLancer = 0;
-    timerLancer = new QTimer(this);
-    QObject::connect(timerLancer, SIGNAL(timeout()), this, SLOT(updateTimeLancer()));
 }
 
 
@@ -142,17 +140,25 @@ glPushMatrix();
             xLache = boulet.getX();
             zLache = boulet.getZ();
             qDebug()<<"etat 3";
-            timerLancer->start(100);
             qDebug()<<"debut chrono";
         }
     }
     if(etat == 3){
-        boulet.setX( boulet.getVitesseInitiale() + boulet.getX() );
-        double sinus = (boulet.getZ() - zLache)/sqrt( pow((boulet.getZ()- zLache),2) + pow((boulet.getX()-xLache),2));
-        boulet.setZ( -(9.8/2 *timeLancer*timeLancer) + boulet.getVitesseInitiale() * sinus * timeLancer + zLache );
-        qDebug()<<"time lancer: "<<timeLancer;
-        boulet.drawBoulet();
-        qDebug()<<"boulet: "<<boulet.getX()<<" "<<boulet.getY()<<" "<<boulet.getZ();
+        if(boulet.getZ()<=0)
+        {
+            emit impactBoulet(boulet.getX());
+            etat = 4;
+        }
+        else
+        {
+            timeLancer += 0.1;
+            boulet.setX(  boulet.getX() - boulet.getVitesseInitiale() );
+            double sinus = (boulet.getZ() - zLache)/sqrt( pow((boulet.getZ()- zLache),2) + pow((boulet.getX()-xLache),2));
+            boulet.setZ( -(9.8/2 *timeLancer*timeLancer) + boulet.getVitesseInitiale() * sinus * timeLancer + zLache );
+            qDebug()<<"time lancer: "<<timeLancer;
+            boulet.drawBoulet();
+            qDebug()<<"boulet: "<<boulet.getX()<<" "<<boulet.getY()<<" "<<boulet.getZ();
+        }
     }
     bras.drawBras(pointf2,pointf3,pointf4);
 glPopMatrix();
@@ -163,9 +169,4 @@ void Trebuchet::tirer()
 {
     etat = 1;
     qDebug()<<"feu trebuchet";
-}
-
-void Trebuchet::updateTimeLancer()
-{
-    timeLancer += 0.1;
 }

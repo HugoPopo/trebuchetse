@@ -3,23 +3,31 @@
 #include "cube.h"
 #include "bras.h"
 #include "boulet.h"
+#include "myglwidget.h"
 #include <QtWidgets>
 #include <QtOpenGL>
 #include <QDebug>
 #include <QGLWidget>
 #include <QOpenGLTexture>
 #include <GL/glu.h>
-class Trebuchet: public Cube, QObject
+#include <QObject>
+
+class Trebuchet: public Cube
 {
+
 public:
-    Trebuchet();
+    Trebuchet(MyGLWidget *mygl);
     void drawTrebuchet(int angle,float pointf2,float pointf3,float pointf4);
     Bras getBras() { return bras; };
     Boulet getBoulet() { return boulet; };
     // lancer le projectile
     void tirer();
+    //getters
+    MyGLWidget* getParent(){ return parent; };
 
 private:
+    //Parent pour signaler l'impact
+    MyGLWidget *parent;
     // Construction graphique du trebuchet
     Bras bras;
     Boulet boulet;
@@ -42,7 +50,6 @@ private:
     // le boulet est lâché
     double angleDeLacher;
     // timer pour chronométrer le lancer
-    QTimer *timerLancer;
     double timeLancer;
     // Position du boulet lorsque il est laché par le bras
     double xLache, zLache;
@@ -53,8 +60,8 @@ private:
     //Point finaux des lignes 2 à 4
     float pointf2,pointf3,pointf4;
 
-private slots:
-    void updateTimeLancer();
+signals:
+    void impactBoulet(double x);
 
 };
 

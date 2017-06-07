@@ -18,8 +18,8 @@ Boulet::Boulet()
     textrock=QImage(":/texture/Image/rock.JPG");
     x=0;
     y=0;
-    z=-5;
-    vitesseInitiale = 0.1;
+    z=5;
+    vitesseInitiale = 3;
 }
 
 
