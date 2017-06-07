@@ -16,18 +16,14 @@ class Trebuchet: public Cube
 {
 
 public:
-    Trebuchet(MyGLWidget *mygl);
+    Trebuchet();
     void drawTrebuchet(int angle,float pointf2,float pointf3,float pointf4);
     Bras getBras() { return bras; };
     Boulet getBoulet() { return boulet; };
     // lancer le projectile
     void tirer();
-    //getters
-    MyGLWidget* getParent(){ return parent; };
 
 private:
-    //Parent pour signaler l'impact
-    MyGLWidget *parent;
     // Construction graphique du trebuchet
     Bras bras;
     Boulet boulet;
@@ -53,6 +49,8 @@ private:
     double timeLancer;
     // Position du boulet lorsque il est laché par le bras
     double xLache, zLache;
+    // impact
+    bool impact;
 
     // Texture de bois pour les poutres
     QImage textbois;
