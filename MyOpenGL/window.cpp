@@ -116,15 +116,12 @@ void Window::newGame()
 void Window::finPartie(){
     if (countTarget==9)
     {
-        //Fin de la partie
-        ui->labelCibleR->setText("Fin partie !");
-
         tempsfin=timeTotal->toString();
         displayHighScore();
         saveHighScore();
 
     }else{
-        //On continue :'=)
+        //On continue
         //Relancer Le chrono cible
         countTarget++;
         timeManche->setHMS(0,0,0,0);
@@ -169,16 +166,17 @@ void Window::update(){
             cvtColor(image,image,CV_BGR2RGB);
             QImage img= QImage((const unsigned char*)(image.data),image.cols,image.rows,QImage::Format_RGB888);
             ui->camFrame->setPixmap(QPixmap::fromImage(img));
-            qDebug()<<resultRect.y;
+
             //Changement Rotation du trébuchet suivi du bras :p
             angleTrebChanged(resultRect.x);
             angleBrasChanged(resultRect.y);
             //Le fil
             pointChanged(resultRect.x*0.01,resultRect.y*0.01,resultRect.x*0.01);
-        if(impact==1){
-            finPartie();
-            impact=0;
-        }
+            if(impact==1){
+                finPartie();
+                impact=0;
+                qDebug()<<"Test";
+            }
         }
     }
 }

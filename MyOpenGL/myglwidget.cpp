@@ -16,11 +16,11 @@ MyGLWidget::MyGLWidget(QWidget *parent)
     yTra = 0;
     zTra = -10;
 
-    xRot = -20*16;
+    xRot = -50*16;
 
     yRot = 0;
     zRot = 90*16;
-    zoom = 0.01;
+    zoom = 0.008;
     //Init
     setAngleBras(45);
     angleTreb = 45;
@@ -255,7 +255,7 @@ void MyGLWidget::draw()
     if(treb.getImpact())
     {
         calcDistance();
-        qDebug()<<"calcDist";
+
     }
     glColor3f(1,1,1);
     glPushMatrix();
@@ -284,10 +284,12 @@ void MyGLWidget::tirer()
 
 void MyGLWidget::calcDistance()
 {
+
     double h = treb.getBoulet().getX();
     double xB = h / cos((angleBras*0,01745));
     double yB = h / sin((angleBras*0,01745));
     // distance balle-cible
     double impactDist = sqrt(pow(xB - targ.getXTarget(),2) + pow(yB - targ.getYTarget(),2));
     emit changedScore(impactDist);
+    treb.setImpact(FALSE);
 }
