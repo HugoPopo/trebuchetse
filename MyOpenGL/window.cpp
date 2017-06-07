@@ -175,6 +175,10 @@ void Window::update(){
             angleBrasChanged(resultRect.y);
             //Le fil
             pointChanged(resultRect.x*0.01,resultRect.y*0.01,resultRect.x*0.01);
+        if(impact==1){
+            finPartie();
+            impact=0;
+        }
         }
     }
 }
@@ -317,6 +321,7 @@ void Window::setScore(int scor){
             score=score+0;
         }
         ui->labelScore->setText(QString::number(score));
+        impact=1;
         //On actualise le score
     }
 }

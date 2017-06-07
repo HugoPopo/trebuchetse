@@ -102,6 +102,8 @@ private:
     void saveHighScore();
     void loadHighScore();
     void displayHighScore();
+    //Valeur pour fin de partie
+    int impact=0;
 private slots:
     //Actualisation de la fenetre
     void update();
