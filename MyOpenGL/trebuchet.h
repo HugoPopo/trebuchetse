@@ -22,6 +22,8 @@ public:
     Boulet getBoulet() { return boulet; };
     // lancer le projectile
     void tirer();
+    bool getImpact() { return impact; };
+    void setImpact(bool imp) { impact = imp; };
 
 private:
     // Construction graphique du trebuchet
@@ -57,9 +59,6 @@ private:
 
     //Point finaux des lignes 2 à 4
     float pointf2,pointf3,pointf4;
-
-signals:
-    void impactBoulet(double x);
 
 };
 
