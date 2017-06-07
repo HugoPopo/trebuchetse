@@ -109,6 +109,7 @@ private:
     float point2,point3, point4;
     //Pour le calcul du score (Distance entre le centre de la cible et l'impact du boulet)
     float distimpact;
+    void calcDistance();
 };
 
 #endif // MYGLWIDGET_H
