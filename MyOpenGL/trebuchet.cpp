@@ -10,7 +10,7 @@
 //Methode de la classe Trebuchet :
 //Permettant de dessiner et de gérer le déplacement du trébuchet
 
-Trebuchet::Trebuchet(MyGLWidget *mygl)
+Trebuchet::Trebuchet()
 {
     angleCatapulte = 0;
     angleBras = 0;
@@ -146,7 +146,7 @@ glPushMatrix();
     if(etat == 3){
         if(boulet.getZ()<=0)
         {
-            emit impactBoulet(boulet.getX());
+            impact = true;
             etat = 4;
         }
         else

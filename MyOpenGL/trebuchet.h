@@ -3,14 +3,12 @@
 #include "cube.h"
 #include "bras.h"
 #include "boulet.h"
-#include "myglwidget.h"
 #include <QtWidgets>
 #include <QtOpenGL>
 #include <QDebug>
 #include <QGLWidget>
 #include <QOpenGLTexture>
 #include <GL/glu.h>
-#include <QObject>
 
 class Trebuchet: public Cube
 {

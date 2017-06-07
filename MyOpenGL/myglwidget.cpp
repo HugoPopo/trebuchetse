@@ -255,8 +255,8 @@ void MyGLWidget::draw()
 
     glColor3f(1,1,1);
     glPushMatrix();
-        //glTranslatef(-330,0,1);
-        glTranslatef(0,0,2);
+        glTranslatef(-330,0,1);
+        //glTranslatef(0,0,2);
         glScalef(4,4,4);
         glRotatef(100+angleTreb,0,0,1);
         treb.drawTrebuchet(angleBras,point2,point3,point4);
@@ -278,3 +278,12 @@ void MyGLWidget::tirer()
     qDebug()<<"feu !";
 }
 
+void MyGLWidget::calcDistance()
+{
+    double h = treb.getBoulet().getX();
+    double xB = h / cos(angleBras*0,0174533);
+    double yB = h / sin(angleBras*0,0174533);
+    // distance balle-cible
+    double impactDist = sqrt(pow(xB - targ.getXTarget(),2) + pow(yB - targ.getYTarget(),2));
+    emit changedScore(impactDist);
+}

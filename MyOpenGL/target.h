@@ -14,6 +14,9 @@ public:
     //Setters
     void setxTarget(int x);
     void setyTarget(int y);
+    int getXTarget(){ return xTarget; };
+    int getYTarget(){ return yTarget; };
+
 private:
     //Coordonnées de la cible
     int xTarget =0;
