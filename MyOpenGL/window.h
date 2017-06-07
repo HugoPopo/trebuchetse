@@ -16,7 +16,8 @@ using namespace cv;
 
 //La classe Window permet de definir notre fenetre principale, de mettre les
 //chronomettre, de récuperer les informations sur l'utilisateurs(mouvement)
-
+//de calculer le score des joueurs et d'enregistrer un fichier .ini afin de stocker les
+//meilleurs scores
 namespace Ui {
 class Window;
 }
